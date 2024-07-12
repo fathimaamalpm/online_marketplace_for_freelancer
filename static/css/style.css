@@ -1,0 +1,4032 @@
+html {
+    display: block;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: transparent;
+    font-weight: normal;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+}
+img {
+    display: block;
+    width: 100%;
+}
+button {
+    font-family: "InterMedium";
+}
+body {
+    font-family: "InterRegular";
+    color: #1a1919;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+a {
+    color: #000000;
+    font-family: "InterRegular";
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+.wrapper {
+    max-width: 1500px;
+    margin: 0 auto;
+    width: 98%;
+}
+
+.thumb {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+#login {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+#login .left {
+    display: flex;
+    width: 650px;
+}
+#login .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+#login .right .container {
+    /* width: 100%; */
+}
+
+#login .right .container .logo {
+    width: 40px;
+}
+
+#login .right {
+}
+
+#login .right .container {
+    width: 50%;
+}
+
+#login .right .container .logoContainer {
+    margin-bottom: 20px;
+}
+
+#login .right .container form {
+    padding: 40px;
+    box-shadow: 4px 4px 44px 0px #ede9f5;
+    border-radius: 24px;
+}
+
+#login .right .container form .welcome {
+    font-size: 15px;
+    color: #bfbeca;
+    margin-bottom: 8px;
+    font-family: "InterMedium";
+}
+
+#login .right .container form .title {
+    font-family: "InterMedium";
+    font-size: 25px;
+    color: #474652;
+    margin-bottom: 20px;
+}
+
+#login .right .container form .field {
+    margin-bottom: 15px;
+}
+
+#login .right .container form .field label {
+    color: #7b7b83;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#login .right .container form .field input {
+    border: 1px solid #f2eef3;
+    width: 100%;
+    padding: 10px 18px;
+}
+
+#login .right .container form .field input::placeholder {
+    color: #bfbeca;
+}
+
+#login .right .container form .loginButton {
+    width: 100%;
+    background-color: #221c62;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 12px 0;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+#login .right .container form .account {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+#login .right .container form .account p {
+    color: #64636d;
+    font-size: 14px;
+}
+
+#login .right .container form .account .register {
+    color: #221c62;
+    font-size: 14px;
+    border-bottom: 1px solid #221c62;
+    padding: 0 5px 5px 5px;
+}
+
+#register {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+#register .left {
+    display: flex;
+    width: 650px;
+}
+#register .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+#register .right .container {
+    /* width: 100%; */
+}
+
+#register .right .container .logo {
+    width: 40px;
+}
+
+#register .right {
+}
+
+#register .right .container {
+    width: 60%;
+}
+
+#register .right .container .logoContainer {
+    margin-bottom: 20px;
+}
+
+#register .right .container form {
+    padding: 40px;
+    box-shadow: 4px 4px 44px 0px #ede9f5;
+    border-radius: 24px;
+}
+
+#register .right .container form .welcome {
+    font-size: 15px;
+    color: #bfbeca;
+    margin-bottom: 8px;
+    font-family: "InterMedium";
+}
+
+#register .right .container form .title {
+    font-family: "InterMedium";
+    font-size: 25px;
+    color: #474652;
+    margin-bottom: 20px;
+}
+
+#register .right .container form .twoField {
+    display: flex;
+    gap: 10px;
+}
+
+#register .right .container form .field {
+    margin-bottom: 15px;
+}
+
+#register .right .container form .userRoleSelect {
+    display: flex;
+    flex-direction: column;
+}
+
+#register .right .container form .userRoleSelect .userRoleList {
+    border: 1px solid #f2eef3;
+    width: 100%;
+    padding: 10px 18px;
+    cursor: pointer;
+}
+#register .right .container form .userRoleSelect .userRoleList option {
+    cursor: pointer;
+}
+
+#register .right .container form .field label {
+    color: #7b7b83;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#register .right .container form .recheck {
+    position: relative;
+}
+
+#register .right .container form .recheck .passwordError {
+    color: #ff0000;
+    font-size: 12px;
+    position: absolute;
+    bottom: -20px;
+    display: none;
+}
+
+#register .right .container form .field input {
+    border: 1px solid #f2eef3;
+    width: 100%;
+    padding: 10px 18px;
+}
+
+#register .right .container form .field input::placeholder {
+    color: #bfbeca;
+}
+
+#register .right .container form .registerButton {
+    width: 100%;
+    background-color: #221c62;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 12px 0;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+#register .right .container form .account {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+#register .right .container form .account p {
+    color: #64636d;
+    font-size: 14px;
+}
+
+#register .right .container form .account .loginLink {
+    color: #221c62;
+    font-size: 14px;
+    border-bottom: 1px solid #221c62;
+    padding: 0 5px 5px 5px;
+}
+
+#employerDashboard {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#employerDashboard {
+    display: flex;
+    height: 100vh;
+}
+
+#employerDashboard .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#employerDashboard .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#employerDashboard .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#employerDashboard .left nav ul li {
+    margin-bottom: 8px;
+}
+#employerDashboard .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: .25;
+}
+
+#employerDashboard .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+#employerDashboard .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#employerDashboard .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#employerDashboard .left .logo {
+    width: 56px;
+}
+
+#employerDashboard .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#employerDashboard .right {
+    
+}
+
+#employerDashboard .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#employerDashboard .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#employerDashboard .right .top .userDetails .userImage {
+    width: 45px;
+    display: flex;
+    border-radius: 50%;
+}
+#employerDashboard .right .top .userDetails .userImage {
+    border-radius: 50%;
+}
+
+#employerDashboard .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#employerDashboard .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#employerDashboard .right .content {
+    margin: 20px 15px;
+}
+
+#employerDashboard .right .content h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+}
+
+#employerDashboard .right .content .cards {
+    display: flex;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+#employerDashboard .right .content .cards .card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 70px;
+    flex: 1;
+}
+#employerDashboard .right .content .cards .card .cardLeft {
+    background-color: #221C62;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    border-radius: 16px 0px 0px 16px;
+    height: 100%;
+}
+
+#employerDashboard .right .content .cards .card .cardLeft .cardIcon { 
+    width: 25px;
+}
+
+#employerDashboard .right .content .cards .card .cardRight { 
+    background-color: #EDEDF4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 16px;
+    border-radius: 0px 15px 15px 0px;
+    flex: 1;
+}
+
+#employerDashboard .right .content .cards .card .cardRight .cardTitle {
+    font-size: 14px;
+    color: #9B9AA5;
+    margin-bottom: 8px;
+}
+
+#employerDashboard .right .content .cards .card .cardRight .count {
+    font-size: 16px;
+    font-family: 'InterMedium';
+    color: #64636D;
+}
+
+#employerDashboard .right .content .recentApplications {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+#employerDashboard .right .content .recentApplications h5 {
+    font-size: 16px;
+    font-family: 'InterMedium';
+    color: #474652;
+}
+#employerDashboard .right .content .recentApplications .viewAll {
+    display: flex;
+    align-items: center;
+    color: #221C62;
+    font-size: 14px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+#employerDashboard .right .content .recentApplications .viewAll p {
+    color: #221C62;
+}
+
+#employerDashboard .right .content .recentApplications .viewAll .rightArrow {
+    width: 18px;
+}
+
+.tableStyle {
+    width: 100%;
+    border: 1px solid #ECE0FF;
+    border-collapse: collapse;
+}
+.tableStyle tr {
+    border: 1px solid #ECE0FF;
+}
+
+.tableStyle thead {
+    position: sticky;
+    top: 0;
+    background-color: #FDFCFF;
+}
+.tableStyle thead th {
+    text-align: start;
+}
+
+.tableStyle thead th {
+    padding: 15px 25px;
+    color: #9B9AA5;
+    font-size: 14px;
+}
+.tableStyle tbody tr td {
+    padding: 10px 25px;
+    color: #7C847C;
+    font-family: 'InterMedium';
+    font-size: 14px;
+}
+.tableStyle tbody tr td .updateButton {
+    background-color: #221C62;
+    color: #FFFFFF;
+    width: 100px;
+    padding: 6px 0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.tableStyle tbody tr td .selected {
+    background-color: #8AC185;
+}
+
+.tableStyle tbody tr td .viewButton {
+    background-color: #221C62;
+    color: #FFFFFF;
+    width: 100px;
+    padding: 6px 0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.tableStyle tbody tr td .employeeViewButton {
+    background-color: #221C62;
+    color: #FFFFFF;
+    width: 100px;
+    padding: 6px 0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.tableStyle thead th:nth-child(3) {
+    text-align: center;
+}
+.tableStyle thead th:nth-child(4) {
+    text-align: center;
+}
+.tableStyle thead th:last-child {
+    text-align: end;
+}
+
+.tableStyle tbody tr td:nth-child(3) {
+    text-align: center;
+}
+.tableStyle tbody tr td:nth-child(4) {
+    text-align: center;
+}
+.tableStyle tbody tr td:last-child {
+    text-align: end;
+    display: flex;
+    justify-content: end;
+}
+.tableStyle tbody tr td .rejected {
+    background-color: #ff0000;
+}
+
+#employerDashboard .right .content .recentApplicationsTableContainer {
+    height: 400px;
+    overflow: scroll;
+}
+
+.updateModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.updateModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: max-content;
+    max-height: 800px;
+    /* overflow-y: scroll; */
+    position: relative;
+}
+
+.updateModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+
+.updateModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 20px;
+}
+
+.updateModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.updateModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.updateModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+
+.updateModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.updateModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 150px;
+}
+.updateModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.updateModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 40px;
+}
+
+.updateModal-content .taskButtons .reject {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+.updateModal-content .taskButtons .select {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+.paymentDetailsModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.paymentDetailsModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.paymentDetailsModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+.paymentDetailsModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 20px;
+}
+.paymentDetailsModal-content .secondTitle {
+    margin-top: 20px;
+}
+
+.paymentDetailsModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.paymentDetailsModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.paymentDetailsModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+.paymentDetailsModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.paymentDetailsModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 150px;
+}
+.paymentDetailsModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.paymentDetailsModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+    margin-top: 28px;
+}
+
+.paymentDetailsModal-content .taskButtons .save {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+.viewPaymentModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.viewPaymentModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.viewPaymentModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+.viewPaymentModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 20px;
+}
+
+.viewPaymentModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.viewPaymentModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 150px;
+}
+.viewPaymentModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+
+.selectPaymentModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.selectPaymentModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.selectPaymentModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+
+.selectPaymentModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 20px;
+}
+
+.selectPaymentModal-content .miniTitle {
+    color: #070707;
+    font-family: 16px !important;
+    font-family: 'InterMedium';
+    margin-bottom: 15px;
+}
+
+.selectPaymentModal-content .methods {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.selectPaymentModal-content .methods li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #64636D;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+
+.selectPaymentModal-content .methods li .circle {
+    height: 15px;
+    width: 15px;
+    border: 1px solid #000000;
+    border-radius: 100%;
+    position: relative;
+}
+
+.selectPaymentModal-content .methods .active .circle {
+    border: 1px solid #3C4CD8;
+}
+
+.selectPaymentModal-content .methods .active {
+    color: #3C4CD8;
+}
+
+.selectPaymentModal-content .methods .active .circle::after {
+    content: "";
+    position: absolute;
+    height: 60%;
+    width: 60%;
+    background-color: #3C4CD8;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+}
+
+.selectPaymentModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.selectPaymentModal-content .pairField .total {
+    font-family: 'InterMedium' !important;
+    color: #070707;
+}
+
+.selectPaymentModal-content .amountPairField {
+    margin: 35px 0 !important;
+}
+
+.selectPaymentModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.selectPaymentModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+
+.selectPaymentModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.selectPaymentModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 150px;
+}
+
+.selectPaymentModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.selectPaymentModal-content .pairField input {
+    border: 1px solid #ECE0FF;
+    width: 100%;
+    padding: 5px 10px;
+    margin-left: 45px;
+}
+
+.selectPaymentModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+    margin-top: 23px;
+}
+
+.selectPaymentModal-content .taskButtons .paymentSave {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 100%;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+.paymentSuccessModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.paymentSuccessModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 40px 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+    /* overflow-y: scroll; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.paymentSuccessModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+
+.paymentSuccessModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 20px;
+}
+
+.paymentSuccessModal-content .tickMark {
+    width: 70px;
+    margin-bottom: 17px;
+}
+
+.paymentSuccessModal-content p {
+    color: #9B9AA5;
+}
+
+
+.paymentDetailsModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.paymentDetailsModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 55%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.paymentDetailsModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+
+.paymentDetailsModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 20px;
+}
+
+.paymentDetailsModal-content .miniTitle {
+    color: #070707;
+    font-family: 16px !important;
+    font-family: 'InterMedium';
+    margin-bottom: 15px;
+}
+
+
+.paymentDetailsModal-content .paymentModalmethods {
+    display: flex;
+    gap: 12px;
+}
+
+.paymentDetailsModal-content .paymentModalmethods li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #64636D;
+    text-transform: capitalize;
+    border-right: 1px solid #E9E7E2;
+    padding-right: 12px;
+    pointer-events: none;
+}
+
+.paymentDetailsModal-content .paymentModalmethods li:last-child {
+    padding-right: 0;
+    border-right: none;
+}
+
+.paymentDetailsModal-content .paymentModalmethods li .circle {
+    height: 15px;
+    width: 15px;
+    border: 1px solid #000000;
+    border-radius: 100%;
+    position: relative;
+}
+
+.paymentDetailsModal-content .paymentModalmethods .active .circle {
+    border: 1px solid #3C4CD8;
+}
+
+.paymentDetailsModal-content .paymentModalmethods .active {
+    color: #3C4CD8;
+}
+
+.paymentDetailsModal-content .paymentModalmethods .active .circle::after {
+    content: "";
+    position: absolute;
+    height: 60%;
+    width: 60%;
+    background-color: #3C4CD8;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+}
+
+.paymentDetailsModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.paymentDetailsModal-content .pairField .total {
+    font-family: 'InterMedium' !important;
+    color: #070707;
+}
+
+.paymentDetailsModal-content .amountPairField {
+    margin: 25px 0 !important;
+}
+
+.paymentDetailsModal-content .amountPairField input::placeholder {
+    color: #BFBECA;
+}
+
+.paymentDetailsModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.paymentDetailsModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+
+.paymentDetailsModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.paymentDetailsModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 150px;
+}
+
+.paymentDetailsModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.paymentDetailsModal-content .pairField input {
+    border: 1px solid #ECE0FF;
+    width: 100%;
+    padding: 5px 10px;
+    margin-left: 45px;
+}
+
+.paymentDetailsModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 23px;
+}
+
+.paymentDetailsModal-content .taskButtons .viewPaymentEditButton {
+    display: block;
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+    border: 1px solid #221C62;
+}
+.paymentDetailsModal-content .taskButtons .paymentDetailCancel {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+    border: 1px solid #221C62;
+}
+.paymentDetailsModal-content .taskButtons .viewPaymentSaveButton {
+    display: none;
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+.paymentDetailsModal-content .taskButtons .paymentDetailSave {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+.selectedEmployeeModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.selectedEmployeeModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.selectedEmployeeModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+.selectedEmployeeModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 20px;
+}
+.selectedEmployeeModal-content .secondTitle {
+    margin-top: 20px;
+}
+
+.selectedEmployeeModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+.selectedEmployeeModal-content .pairField .amountPaid { 
+    font-size: 20px;
+    color: #33447C;
+    font-family: 'InterMedium';
+}
+.selectedEmployeeModal-content .pairField .amount { 
+    font-size: 20px;
+    color: #259D2B;
+    font-family: 'InterMedium';
+}
+
+.selectedEmployeeModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.selectedEmployeeModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+.selectedEmployeeModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.selectedEmployeeModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 150px;
+}
+.selectedEmployeeModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.selectedEmployeeModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+    margin-top: 28px;
+}
+
+.selectedEmployeeModal-content .taskButtons .save {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+.createModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.createModal-content {
+    background-color: #fafcff;
+    margin: 4% auto;
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 50%;
+    border-radius: 18px;
+    height: 605px;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.createModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 25px;
+}
+
+.createModal-content .pairField {
+    display: flex;
+    /* flex-direction: row; */
+    margin-bottom: 10px;
+}
+
+.createModal-content .pairField label {
+    color: #64636D;
+    font-size: 15px;
+    width: 190px;
+    font-family: 'InterMedium';
+    
+}
+
+.createModal-content .pairField input {
+    border: 1px solid #ECE0FF;
+    flex: 1;
+    padding: 12px 10px;
+}
+.createModal-content .pairField textarea {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+    border: 1px solid #ECE0FF;
+    padding: 12px 10px;
+    resize: none;
+}
+
+.createModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 40px;
+}
+
+.createModal-content .taskButtons .cancel {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+.createModal-content .taskButtons .create {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+.viewModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.viewModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 60%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.viewModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 10px;
+}
+
+.viewModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.viewModal-content .pairField .list {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+    list-style: disc !important;
+}
+
+.viewModal-content .pairField .list li {
+    list-style: disc !important;
+}
+
+
+.viewModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.viewModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+.viewModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.viewModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 150px;
+}
+.viewModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.viewModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 10px;
+}
+
+.viewModal-content .taskButtons .close {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+
+
+
+
+.detailModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.detailModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 50%;
+    border-radius: 18px;
+    max-height: 650px;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.detailModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+.detailModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 10px;
+}
+.detailModal-content .detailModalTitile {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailModal-content .employeeDetailModalTitle {
+    margin-bottom: 25px;
+}
+
+.detailModal-content .detailModalTitile .threeDots {
+    width: 20px;
+    cursor: pointer;
+}
+
+.detailModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.detailModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.detailModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+.detailModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.detailModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 180px;
+}
+.detailModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.detailModal-content .pairField .list {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.detailModal-content .pairField .list li {
+    list-style: disc !important;
+}
+.detailModal-content .pairField .countContainer {
+    display: flex;
+    gap: 15px;
+    text-align: center;
+}
+
+.detailModal-content .pairField .countContainer .totalRecieved,.shortlisted,.rejected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detailModal-content .pairField .countContainer .countTitle {
+    font-size: 14px;
+    color: #64636D;
+    margin-bottom: 5px;
+}
+
+.detailModal-content .pairField .countContainer .number {
+    border: 1px solid #ECE0FF;
+    width: 70px;
+    padding: 10px 0;
+    font-family: 'InterMedium';
+    font-size: 16px;
+}
+
+.detailModal-content .pairField .countContainer .receivedNumber {
+     color: #221C62;
+}
+
+.detailModal-content .pairField .countContainer .shortListedNumber {
+    color: #4CBB3A;
+}
+
+.detailModal-content .pairField .countContainer .rejectedNumber {
+    color: #BB3A3A;
+}
+
+.detailModal-content .taskButtons {    
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 15px;
+}
+.detailModal-content .viewEmployeeDetailsButtons {
+    margin-top: 60px;
+}
+.detailModal-content .viewEmployeeDetailsButtons .alreadyAppliedButton {
+    border-radius: 4px;
+    border: 1px solid  #221C62;
+    padding: 10px 0;
+    width: 150px;
+    cursor: default;
+}
+
+.detailModal-content .taskButtons .close {
+    color: #221C62;
+    font-size: 14px;
+    background-color: #ffffff;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+    border: 1px solid  #221C62;
+}
+
+.detailModal-content .taskButtons .apply {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+.applyModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.applyModal-content {
+    background-color: #fafcff;
+    margin: 8% auto;
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: auto;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.applyModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 25px;
+}
+
+.applyModal-content .pairField {
+    display: flex;
+    /* flex-direction: row; */
+    margin-bottom: 10px;
+}
+
+.applyModal-content .pairField .upload {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 5px;
+}
+.applyModal-content .pairField .upload .uploadIcon {
+    width: 20px;
+}
+
+.applyModal-content .pairField label {
+    color: #64636D;
+    font-size: 15px;
+    width: 150px;
+    font-family: 'InterMedium';
+    
+}
+
+.applyModal-content .pairField input {
+    border: 1px solid #ECE0FF;
+    flex: 1;
+    padding: 12px 10px;
+}
+.applyModal-content .pairField textarea {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+    border: 1px solid #ECE0FF;
+    padding: 12px 10px;
+    resize: none;
+}
+
+.applyModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 40px;
+}
+
+.applyModal-content .taskButtons .cancel {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+.applyModal-content .taskButtons .create {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+.employeeViewModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.employeeViewModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 55%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+}
+
+.employeeViewModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+.employeeViewModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 15px;
+}
+
+.employeeViewModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.employeeViewModal-content .pairField .greenText {
+    color: #4CBB3A;
+    font-family: 'InterMedium';
+}
+
+.employeeViewModal-content .pairField .addPayment { 
+    display: flex;
+    gap: 8px;
+    background-color: #221C62;
+    padding: 8px 15px;
+    align-items: center;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'InterRegular' !important;
+}
+
+.employeeViewModal-content .pairField .viewPayment { 
+    display: flex;
+    gap: 8px;
+    background-color: #221C62;
+    padding: 12px 15px;
+    align-items: center;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'InterRegular' !important;
+}
+
+.employeeViewModal-content .pairField .viewJobStatus .methods {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.employeeViewModal-content .pairField .viewJobStatus .methods li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #64636D;
+    text-transform: capitalize;
+    border-right:  1px solid #E9E7E2;
+    padding-right: 12px;
+    cursor: pointer;
+}
+.employeeViewModal-content .pairField .viewJobStatus .methods li:last-child {
+    padding-right: 0;
+    border-right: none;
+} 
+
+.employeeViewModal-content .pairField .viewJobStatus .methods li .circle {
+    height: 15px;
+    width: 15px;
+    border: 1px solid #000000;
+    border-radius: 100%;
+    position: relative;
+}
+
+.employeeViewModal-content .pairField .viewJobStatus .methods .active .circle {
+    border: 1px solid #3C4CD8;
+}
+
+.employeeViewModal-content .pairField .viewJobStatus .methods .active {
+    color: #3C4CD8;
+}
+
+.employeeViewModal-content .pairField .viewJobStatus .methods .active .circle::after {
+    content: "";
+    position: absolute;
+    height: 60%;
+    width: 60%;
+    background-color: #3C4CD8;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45% ,-45%);
+}
+
+.employeeViewModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.employeeViewModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+.employeeViewModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.employeeViewModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 170px;
+}
+.employeeViewModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.employeeViewModal-content .pairField .list {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.employeeViewModal-content .pairField .list li {
+    list-style: disc !important;
+}
+
+.employeeViewModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 30px;
+}
+
+.employeeViewModal-content .taskButtons .close {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+.employeeViewModal-content .taskButtons .save {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+.afterPaymentModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.afterPaymentModal-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 55%;
+    border-radius: 18px;
+    height: max-content;
+    position: relative;
+}
+
+.afterPaymentModal .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+.afterPaymentModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 15px;
+}
+
+.afterPaymentModal-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.afterPaymentModal-content .pairField  .greenText {
+    color: #4CBB3A;
+    font-family: 'InterMedium';
+}
+
+.afterPaymentModal-content .pairField .viewPayment { 
+    display: flex;
+    gap: 8px;
+    background-color: #221C62;
+    padding: 10px 15px;
+    align-items: center;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'InterRegular' !important;
+}
+
+.afterPaymentModal-content .pairField .viewJobStatus .methods {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.afterPaymentModal-content .pairField .viewJobStatus .methods li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #64636D;
+    text-transform: capitalize;
+    border-right:  1px solid #E9E7E2;
+    padding-right: 12px;
+    cursor: pointer;
+}
+.afterPaymentModal-content .pairField .viewJobStatus .methods li:last-child {
+    padding-right: 0;
+    border-right: none;
+} 
+
+.afterPaymentModal-content .pairField .viewJobStatus .methods li .circle {
+    height: 15px;
+    width: 15px;
+    border: 1px solid #000000;
+    border-radius: 100%;
+    position: relative;
+}
+
+.afterPaymentModal-content .pairField .viewJobStatus .methods .active .circle {
+    border: 1px solid #3C4CD8;
+}
+
+.afterPaymentModal-content .pairField .viewJobStatus .methods .active {
+    color: #3C4CD8;
+}
+
+.afterPaymentModal-content .pairField .viewJobStatus .methods .active .circle::after {
+    content: "";
+    position: absolute;
+    height: 60%;
+    width: 60%;
+    background-color: #3C4CD8;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45% ,-45%);
+}
+
+.afterPaymentModal-content .pairField .pdf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.afterPaymentModal-content .pairField .pdf p {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    color: #221C62;
+    border: 1px solid #ECE0FF;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+.afterPaymentModal-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.afterPaymentModal-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 170px;
+}
+.afterPaymentModal-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.afterPaymentModal-content .pairField .list {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+
+.afterPaymentModal-content .pairField .list li {
+    list-style: disc !important;
+}
+
+.afterPaymentModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 30px;
+}
+
+.afterPaymentModal-content .taskButtons .close {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+.afterPaymentModal-content .taskButtons .save {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+
+
+
+.editModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.editModal-content {
+    background-color: #fafcff;
+    margin: 8% auto;
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: 455px;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.editModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 25px;
+}
+
+.editModal-content .pairField {
+    display: flex;
+    /* flex-direction: row; */
+    margin-bottom: 10px;
+}
+
+.editModal-content .pairField label {
+    color: #64636D;
+    font-size: 15px;
+    width: 150px;
+    font-family: 'InterMedium';
+    
+}
+
+.editModal-content .pairField input {
+    border: 1px solid #ECE0FF;
+    flex: 1;
+    padding: 12px 10px;
+}
+.editModal-content .pairField textarea {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+    border: 1px solid #ECE0FF;
+    padding: 12px 10px;
+    resize: none;
+}
+
+.editModal-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 40px;
+}
+
+.editModal-content .taskButtons .cancel {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+.editModal-content .taskButtons .create {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+
+
+.deleteModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.deleteModal-content {
+    background-color: #fafcff;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 30%;
+    border-radius: 18px;
+    height: 200px;
+    position: relative;
+    /* overflow-y: scroll; */
+}
+
+.deleteModal-content h6 {
+    font-size: 18px;
+    color: #221C62;
+    font-family: 'InterMedium';
+    margin-bottom: 15px;
+}
+
+.deleteModal-content  p {
+    font-size: 14px;
+    color: #64636D;
+    margin-bottom: 30px;
+}
+.deleteModal-content .taskButtons {    
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 15px;
+}
+.deleteModal-content .taskButtons .cancel {
+    color: #221C62;
+    font-size: 14px;
+    background-color: #ffffff;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+    border: 1px solid  #221C62;
+}
+.deleteModal-content .taskButtons .delete {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+.logoutModal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.logoutModal-content {
+    background-color: #fafcff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #e4e4e4;
+    width: 30%;
+    border-radius: 18px;
+    height: 25vh;
+}
+
+.logoutModal-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #221C62;
+    margin-bottom: 10px;
+}
+
+.logoutModal-content p {
+    color: #64636D;
+    font-size: 14px;
+}
+
+.logoutModal-content .createButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 40px;
+}
+
+.logoutModal-content .createButtons .logoutCancel {
+    color: #33447c;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+.logoutModal-content .createButtons .logoutConfirm {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+
+
+#employerJob {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#employerJob {
+    display: flex;
+    height: 100vh;
+}
+
+#employerJob .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#employerJob .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#employerJob .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#employerJob .left nav ul li {
+    margin-bottom: 8px;
+}
+#employerJob .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: .25;
+}
+
+#employerJob .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+#employerJob .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#employerJob .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#employerJob .left .logo {
+    width: 56px;
+}
+
+#employerJob .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#employerJob .right {
+    
+}
+
+#employerJob .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#employerJob .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#employerJob .right .top .userDetails .userImage {
+    width: 45px;
+}
+
+#employerJob .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#employerJob .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#employerJob .right .content {
+    margin: 20px 15px;
+}
+
+#employerJob .right .content h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+}
+
+#employerJob .right .content .contentTop {
+    display: flex;
+    justify-content: space-between;
+}
+
+#employerJob .right .content .contentTop .createJob { 
+    display: flex;
+    gap: 8px;
+    background-color: #221C62;
+    padding: 8px 15px;
+    align-items: center;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+#employerJob .right .content .jobCards {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+#employerJob .right .content .jobCards .jobCard .jobTitleTop {
+    display: flex;
+    justify-content: space-between;
+}
+#employerJob .right .content .jobCards .jobCard .jobTitleTop .dropDown .threeDots{
+    width: 15px;
+    cursor: pointer;
+}
+
+#employerJob .right .content .jobCards .jobCard {
+    background-color: #F8F7FF;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #F2F0FF;
+}
+
+#employerJob .right .content .jobCards .jobCard .jobTitle {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+#employerJob .right .content .jobCards .jobCard .fieldPair {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#employerJob .right .content .jobCards .jobCard .fieldPair label {
+    width: 180px;
+    font-size: 14px;
+    color: #9B9AA5;
+}
+
+#employerJob .right .content .jobCards .jobCard .fieldPair p {
+    font-size: 14px;
+    color: #64636D;
+    font-family: 'InterMedium';
+}
+
+#employerJob .right .content .jobCards .jobCard .view {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    color: #221C62;
+    font-family: 'InterMedium';
+    padding-top: 10px;
+    border-top: 1px solid #ECE0FF;
+    cursor: pointer;
+}
+
+#employerJob .right .content .jobCards .jobCard .view .viewArrow { 
+    width: 12px;
+}
+
+
+
+
+#employerApplication {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#employerApplication {
+    display: flex;
+    height: 100vh;
+}
+
+#employerApplication .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#employerApplication .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#employerApplication .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#employerApplication .left nav ul li {
+    margin-bottom: 8px;
+}
+#employerApplication .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: 1s !important;
+}
+
+#employerApplication .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+#employerApplication .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+    transition: 1s;
+}
+
+#employerApplication .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#employerApplication .left .logo {
+    width: 56px;
+}
+
+#employerApplication .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#employerApplication .right {
+    
+}
+#employerApplication .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#employerApplication .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#employerApplication .right .top .userDetails .userImage {
+    width: 45px;
+}
+
+#employerApplication .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#employerApplication .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#employerApplication .right .content {
+    margin: 20px 15px;
+}
+
+#employerApplication .right .content h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+}
+#employerApplication .right .content .ApplicationsTableContainer {
+    height: 500px;
+    overflow-y: scroll;
+    margin-top: 15px;
+}
+#employerApplication .right .content .ApplicationsTableContainer .allApplications {
+    
+}
+
+#employeeApplication .right .content .allApplications .appliedJobTable tbody tr .pendingColor {
+    color: #7C847C !important;
+}
+
+#employeeApplication .right .content .allApplications .appliedJobTable tbody tr .selectedColor {
+    color: #4CBB3A !important;
+}
+
+#employeeApplication .right .content .allApplications .appliedJobTable tbody tr .rejectedColor {
+    color: #BB3A3A !important;
+}
+
+
+#employeeDashboard {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#employeeDashboard {
+    display: flex;
+    height: 100vh;
+}
+
+#employeeDashboard .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#employeeDashboard .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#employeeDashboard .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#employeeDashboard .left nav ul li {
+    margin-bottom: 8px;
+}
+#employeeDashboard .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: .25;
+}
+
+#employeeDashboard .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+#employeeDashboard .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#employeeDashboard .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#employeeDashboard .left .logo {
+    width: 56px;
+}
+
+#employeeDashboard .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#employeeDashboard .right {
+    
+}
+
+#employeeDashboard .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#employeeDashboard .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#employeeDashboard .right .top .userDetails .userImage {
+    width: 45px;
+}
+
+#employeeDashboard .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#employeeDashboard .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#employeeDashboard .right .content {
+    margin: 20px 15px;
+}
+
+#employeeDashboard .right .content h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+}
+
+#employeeDashboard .right .content .cards {
+    display: flex;
+    gap: 18px;
+    margin-top: 10px;
+}
+
+#employeeDashboard .right .content .cards .card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 70px;
+    flex: 1;
+}
+#employeeDashboard .right .content .cards .card .cardLeft {
+    background-color: #221C62;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    border-radius: 16px 0px 0px 16px;
+    height: 100%;
+}
+
+#employeeDashboard .right .content .cards .card .cardLeft .cardIcon { 
+    width: 25px;
+}
+
+#employeeDashboard .right .content .cards .card .cardRight { 
+    background-color: #EDEDF4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 16px;
+    border-radius: 0px 15px 15px 0px;
+    flex: 1;
+}
+
+#employeeDashboard .right .content .cards .card .cardRight .cardTitle {
+    font-size: 14px;
+    color: #9B9AA5;
+    margin-bottom: 8px;
+}
+
+#employeeDashboard .right .content .cards .card .cardRight .count {
+    font-size: 16px;
+    font-family: 'InterMedium';
+    color: #64636D;
+}
+
+#employeeDashboard .right .content .recentApplications {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+#employeeDashboard .right .content .recentApplications h5 {
+    font-size: 16px;
+    font-family: 'InterMedium';
+    color: #474652;
+}
+#employeeDashboard .right .content .recentApplications .viewAll {
+    display: flex;
+    align-items: center;
+    color: #221C62;
+    font-size: 14px;
+    gap: 5px;
+    cursor: pointer;
+}
+#employeeDashboard .right .content .recentApplications .viewAll .rightArrow {
+    width: 18px;
+}
+
+#employeeDashboard .right .content .appliedJobTableContainer {
+    height: 428px;
+    overflow-y: scroll;
+}
+
+#employeeDashboard .right .content .appliedJobTableContainer .appliedJobTable thead th:nth-child(5) {
+    text-align: right;
+}
+#employeeDashboard .right .content .appliedJobTableContainer .appliedJobTable tbody tr td:nth-child(5) {
+    text-align: right;
+}
+
+#employeeDashboard .right .content .appliedJobTableContainer .appliedJobTable tbody tr .pendingColor {
+    color: #7C847C;
+}
+
+#employeeDashboard .right .content .appliedJobTableContainer .appliedJobTable tbody tr .selectedColor {
+    color: #4CBB3A;
+}
+
+#employeeDashboard .right .content .appliedJobTableContainer .appliedJobTable tbody tr .rejectedColor {
+    color: #BB3A3A;
+}
+
+
+
+
+
+#employeeJob {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#employeeJob {
+    display: flex;
+    height: 100vh;
+}
+
+#employeeJob .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#employeeJob .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#employeeJob .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#employeeJob .left nav ul li {
+    margin-bottom: 8px;
+}
+#employeeJob .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: .25;
+}
+
+#employeeJob .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#employeeJob .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#employeeJob .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#employeeJob .left .logo {
+    width: 56px;
+}
+
+#employeeJob .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#employeeJob .right {
+    
+}
+
+#employeeJob .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#employeeJob .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#employeeJob .right .top .userDetails .userImage {
+    width: 45px;
+}
+
+#employeeJob .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#employeeJob .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#employeeJob .right .content {
+    margin: 20px 15px;
+}
+
+#employeeJob .right .content h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+#employeeJob .right .content .jobCards {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 5px;
+}
+
+#employeeJob .right .content .jobCards .jobCard {
+    background-color: #F8F7FF;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #F2F0FF;
+}
+
+#employeeJob .right .content .jobCards .jobCard .cardTitleContainer {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#employeeJob .right .content .jobCards .jobCard .cardTitleContainer .threedots {
+    width: 15px;
+}
+
+#employeeJob .right .content .jobCards .jobCard .jobTitle {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 17px;
+    
+}
+#employeeJob .right .content .jobCards .jobCard .fieldPair {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#employeeJob .right .content .jobCards .jobCard .fieldPair label {
+    width: 180px;
+    font-size: 14px;
+    color: #9B9AA5;
+}
+
+#employeeJob .right .content .jobCards .jobCard .fieldPair p {
+    font-size: 14px;
+    color: #64636D;
+    font-family: 'InterMedium';
+}
+
+#employeeJob .right .content .jobCards .jobCard .view {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    color: #221C62;
+    font-family: 'InterMedium';
+    padding-top: 10px;
+    border-top: 1px solid #ECE0FF;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#employeeJob .right .content .jobCards .jobCard .view .viewArrow { 
+    width: 12px;
+}
+
+
+#employeeApplication {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#employeeApplication {
+    display: flex;
+    height: 100vh;
+}
+
+#employeeApplication .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#employeeApplication .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#employeeApplication .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#employeeApplication .left nav ul li {
+    margin-bottom: 8px;
+}
+#employeeApplication .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: .25;
+}
+
+#employeeApplication .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#employeeApplication .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#employeeApplication .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#employeeApplication .left .logo {
+    width: 56px;
+}
+
+#employeeApplication .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#employeeApplication .right {
+    
+}
+#employeeApplication .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#employeeApplication .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#employeeApplication .right .top .userDetails .userImage {
+    width: 45px;
+}
+
+#employeeApplication .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#employeeApplication .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#employeeApplication .right .content {
+    margin: 20px 15px;
+}
+
+#employeeApplication .right .content h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+}
+#employeeApplication .right .content .allApplications {
+    height: 500px;
+    overflow-y: scroll;
+    margin-top: 15px;   
+}
+#employeeApplication .right .content .allApplications .appliedJobTable thead th:nth-child(5) {
+    text-align: end;
+}
+
+#employeeApplication .right .content .allApplications .appliedJobTable tbody tr td:nth-child(5) {
+    text-align: end;
+}
+
+.shortlisted {
+    color: #4CBB3A;
+}
+
+.pending {
+    color: #7C847C;
+}
+
+.rejected {
+    color: #BB3A3A;
+}
+
+.dropDown {
+    position: relative;
+}
+.dropDown .dropDownList {
+    width: 150px;
+    position: absolute;
+    right: 40%;
+    top: 30%;
+    background-color: #FFFFFF;
+    border: 1px solid #ECE0FF;
+    flex-direction: column;
+    gap: 20px 10px;
+    padding: 20px 15px;
+    border-radius: 8px;
+    display: none;
+}
+
+.dropDown .dropDownList .options {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;    
+}
+
+.dropDown .dropDownList .options .optionIcon {
+    width: 20px;
+}
+
+.dropDown .dropDownList .options p {
+
+}
+.work-pair-field {
+    margin-bottom: 25px !important;
+}
+
+.work-pair-field label{
+    width: 250px;
+}
+.work-pair-field select {
+    border: 1px solid #ECE0FF;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.work-pair-field input {
+    margin-left: 0 !important;
+}
+.employer-list {
+    width: 100%;
+}
+
+.paginationContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+.paginationContainer .text {
+    color: #393E4E;
+    font-size: 14px;
+    font-family: 'InterMedium';
+}
+.paginationNav {
+    display: flex;
+    align-items: center;
+}
+.paginationNav button {
+    color: #221C62; /* Green text */
+    padding: 8px 16px; /* Padding */
+    margin: 2px; /* Margin between buttons */
+    border: 1px solid #221C62; /* Border */
+    border-radius: 6px;
+    cursor: pointer; /* Cursor style */
+    background-color: transparent; /* Transparent background */
+}
+.paginationNav button:hover {
+    background-color: #221C62; /* Darker green on hover */
+    color: #FFFFFF;
+}
+.paginationNav button.active {
+    background-color: #221C62; /* Green background for active page */
+    color: white; /* White text */
+}
+
+#adminDashboard {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#adminDashboard {
+    display: flex;
+    height: 100vh;
+}
+
+#adminDashboard .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#adminDashboard .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#adminDashboard .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#adminDashboard .left nav ul li {
+    margin-bottom: 8px;
+}
+#adminDashboard .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: .25;
+}
+
+#adminDashboard .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+#adminDashboard .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#adminDashboard .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#adminDashboard .left .logo {
+    width: 56px;
+}
+
+#adminDashboard .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#adminDashboard .right {
+    
+}
+
+#adminDashboard .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#adminDashboard .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#adminDashboard .right .top .userDetails .userImage {
+    width: 45px;
+    display: flex;
+    border-radius: 50%;
+}
+#adminDashboard .right .top .userDetails .userImage {
+    border-radius: 50%;
+}
+
+#adminDashboard .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#adminDashboard .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#adminDashboard .right .content {
+    margin: 20px 15px;
+}
+
+#adminDashboard .right .content h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+}
+
+#adminDashboard .right .content .cards {
+    display: grid;
+    gap: 10px;
+    margin-top: 10px;
+    grid-template-columns: repeat(2,1fr);
+}
+
+#adminDashboard .right .content .cards .card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 70px;
+    flex: 1;
+}
+#adminDashboard .right .content .cards .card .cardLeft {
+    background-color: #221C62;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    border-radius: 16px 0px 0px 16px;
+    height: 100%;
+}
+
+#adminDashboard .right .content .cards .card .cardLeft .cardIcon { 
+    width: 25px;
+}
+
+#adminDashboard .right .content .cards .card .cardRight { 
+    background-color: #EDEDF4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 16px;
+    border-radius: 0px 15px 15px 0px;
+    flex: 1;
+}
+
+#adminDashboard .right .content .cards .card .cardRight .cardTitle {
+    font-size: 14px;
+    color: #9B9AA5;
+    margin-bottom: 8px;
+}
+
+#adminDashboard .right .content .cards .card .cardRight .count {
+    font-size: 16px;
+    font-family: 'InterMedium';
+    color: #64636D;
+}
+
+#adminDashboard .right .content .recentApplications {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0 12px 0;
+}
+#adminDashboard .right .content .recentApplications h5 {
+    font-size: 16px;
+    font-family: 'InterMedium';
+    color: #474652;
+}
+#adminDashboard .right .content .recentApplications .viewAll {
+    display: flex;
+    align-items: center;
+    color: #221C62;
+    font-size: 14px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+#adminDashboard .right .content .recentApplications .viewAll p {
+    color: #221C62;
+}
+
+#adminDashboard .right .content .recentApplications .viewAll .rightArrow {
+    width: 18px;
+}
+
+#adminDashboard .right .content .recentAppliedJobsTableContainer {
+    height: 198px;
+    overflow-y: scroll;
+}
+
+#adminDashboard .right .content .recentAppliedJobsTableContainer .recentApplicationsTable {
+
+}
+
+#adminDashboard .right .content .recentAppliedJobsTableContainer .recentApplicationsTable tbody tr td { 
+    padding: 5px 25px;
+}
+
+#adminDashboard .right .content .recentAppliedJobsTableContainer .recentApplicationsTable tbody tr td .updateButton {
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+#adminDashboard .right .content .recentAppliedJobsTableContainer .recentApplicationsTable tbody tr td .viewButton {
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+#adminDashboard .right .content .recentPostedTableContainer {
+    height: 148px;
+    overflow-y: scroll;
+}
+
+#adminDashboard .right .content .recentPostedTableContainer .recentApplicationsTable {
+
+}
+
+#adminDashboard .right .content .recentPostedTableContainer .recentApplicationsTable tbody tr td { 
+    padding: 5px 25px;
+}
+
+#adminDashboard .right .content .recentPostedTableContainer .recentApplicationsTable tbody tr td .updateButton {
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+#adminDashboard .right .content .recentPostedTableContainer .recentApplicationsTable tbody tr td .viewButton {
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+#adminJob {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#adminJob {
+    display: flex;
+    height: 100vh;
+}
+
+#adminJob .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#adminJob .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#adminJob .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#adminJob .left nav ul li {
+    margin-bottom: 8px;
+}
+#adminJob .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: .25;
+}
+
+#adminJob .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+#adminJob .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#adminJob .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#adminJob .left .logo {
+    width: 56px;
+}
+
+#adminJob .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#adminJob .right {
+    
+}
+
+#adminJob .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#adminJob .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#adminJob .right .top .userDetails .userImage {
+    width: 45px;
+}
+
+#adminJob .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#adminJob .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#adminJob .right .content {
+    margin: 8px 15px;
+}
+
+#adminJob .right .content h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+}
+
+#adminJob .right .content .contentTop {
+    display: flex;
+    justify-content: space-between;
+}
+
+#adminJob .right .content .contentTop .createJob { 
+    display: flex;
+    gap: 8px;
+    background-color: #221C62;
+    padding: 8px 15px;
+    align-items: center;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+#adminJob .right .content .jobCards {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 8px;
+    margin-top: 5px;
+}
+#adminJob .right .content .jobCards .jobCard .jobTitleTop {
+    display: flex;
+    justify-content: space-between;
+}
+#adminJob .right .content .jobCards .jobCard .jobTitleTop .dropDown .threeDots{
+    width: 15px;
+    cursor: pointer;
+}
+
+#adminJob .right .content .jobCards .jobCard {
+    background-color: #F8F7FF;
+    padding: 15px 10px;
+    border-radius: 8px;
+    border: 1px solid #F2F0FF;
+}
+
+#adminJob .right .content .jobCards .jobCard .jobTitle {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+#adminJob .right .content .jobCards .jobCard .fieldPair {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+#adminJob .right .content .jobCards .jobCard .employerPair {
+    margin: 18px 0 12px 0 !important;
+}
+
+#adminJob .right .content .jobCards .jobCard .fieldPair label {
+    width: 180px;
+    font-size: 14px;
+    color: #9B9AA5;
+}
+
+#adminJob .right .content .jobCards .jobCard .fieldPair p {
+    font-size: 14px;
+    color: #64636D;
+    font-family: 'InterMedium';
+}
+
+#adminJob .right .content .jobCards .jobCard .fieldPair .employerName {
+    color: #000000;   
+}
+
+#adminJob .right .content .jobCards .jobCard .view {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+    color: #221C62;
+    font-family: 'InterMedium';
+    padding-top: 5px;
+    border-top: 1px solid #ECE0FF;
+    cursor: pointer;
+}
+
+#adminJob .right .content .jobCards .jobCard .view p {
+    font-size: 15px;
+}
+
+#adminJob .right .content .jobCards .jobCard .view .viewArrow { 
+    width: 12px;
+}
+
+.hideButton {
+    display: none !important;
+}
+
+#employerMeeting {
+    height: 100vh;
+    background-color: #221C62;
+}
+
+#employerMeeting {
+    display: flex;
+    height: 100vh;
+}
+
+#employerMeeting .left {
+    width: 17%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+#employerMeeting .left .leftLogo {
+    margin-left: 40px;
+    width: 40px;
+}
+
+#employerMeeting .left nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#employerMeeting .left nav ul li {
+    margin-bottom: 8px;
+}
+#employerMeeting .left nav ul li a {
+    display: flex;
+    gap: 5px;
+    padding: 17px 30px;
+    border-radius:14px;
+    align-items: center;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #282268;
+    transition: .25;
+}
+
+#employerMeeting .left nav ul li a.active {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+#employerMeeting .left nav ul li a:hover {
+    background: linear-gradient(90deg, #4333A4 0%, #746096 100%);
+}
+
+#employerMeeting .left nav ul li a .navIcon {
+    width: 20px;
+}
+
+#employerMeeting .left .logo {
+    width: 56px;
+}
+
+#employerMeeting .right {
+    flex: 1;
+    background-color: #FDFCFF;
+    border-radius: 60px 0px 0px 60px;
+}
+
+#employerMeeting .right {
+    
+}
+
+#employerMeeting .right .top {
+    display: flex;
+    justify-content: end;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECE0FF;
+}
+
+#employerMeeting .right .top .userDetails {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#employerMeeting .right .top .userDetails .userImage {
+    width: 45px;
+    display: flex;
+    border-radius: 50%;
+}
+#employerMeeting .right .top .userDetails .userImage {
+    border-radius: 50%;
+}
+
+#employerMeeting .right .top .userDetails .userName {
+    font-size: 14px;
+    font-family: 'InterMedium';
+    text-transform: capitalize;
+}
+#employerMeeting .right .top .userDetails .arrow {
+    width: 18px;
+    cursor: pointer;
+}
+
+#employerMeeting .right .content {
+    margin: 20px 15px;
+}
+#employerMeeting .right .content .contentTop {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+#employerMeeting .right .content .contentTop .createJob { 
+    display: flex;
+    gap: 8px;
+    background-color: #221C62;
+    padding: 8px 15px;
+    align-items: center;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 14px;
+}
+#employerMeeting .right .content .contentTop h4 {
+    color: #474652;
+    font-family: 'InterMedium';
+    font-size: 18px;
+}
+
+.createMeeting {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.createMeeting-content {
+    background-color: #fafcff;
+    margin: 50vh auto;
+    transform: translateY(-50%);
+    padding: 30px;
+    border: 1px solid #e4e4e4;
+    width: 40%;
+    border-radius: 18px;
+    height: max-content;
+    max-height: 800px;
+    /* overflow-y: scroll; */
+    position: relative;
+}
+
+.createMeeting .closeIcon {
+    position: absolute;
+    width: 33px;
+    background-color: #FBFCFF;
+    padding: 5px;
+    right: -8%; 
+    top: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D5D7E2;
+}
+
+.createMeeting-content h4 {
+    font-size: 18px;
+    font-family: "InterMedium";
+    color: #33447C;
+    margin-bottom: 20px;
+}
+
+.createMeeting-content .pairField {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.createMeeting-content .pairField .pdf .downloadIcon {
+    width: 20px;
+}
+
+.createMeeting-content .pairField label {
+    color: #9B9AA5;
+    font-size: 15px;
+    width: 150px;
+}
+.createMeeting-content .pairField p {
+    font-size: 14px;
+    flex: 1;
+    color: #64636D;
+    line-height: 25px;
+}
+.createMeeting-content .pairField input {
+    border: 1px solid #ECE0FF;
+    width: 100%;
+    padding: 5px 10px;
+    margin-left: 45px;
+    
+}
+
+.createMeeting-content .taskButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-top: 40px;
+}
+
+.createMeeting-content .taskButtons .reject {
+    color: #221C62;
+    font-size: 14px;
+    width: 150px;
+    padding: 10px 0;
+    border: 1px solid #221C62;
+    border-radius: 4px;
+}
+
+.createMeeting-content .taskButtons .select {
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #221C62;
+    width: 150px;
+    padding: 10px 0;
+    font-family: "InterRegular";
+    border-radius: 4px;
+}
+
+

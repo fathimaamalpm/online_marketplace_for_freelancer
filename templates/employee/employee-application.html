@@ -1,0 +1,694 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section id="employeeApplication">
+    <div class="left">
+        <div class="leftLogo">
+            <img src="{% static '/images/logo white.svg' %}" alt="logo" />
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'employee_dashboard' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/dashboard.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee_job' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/job.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Job
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee_application' %}" class="active">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/application.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Application
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee_meeting' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/meeting.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Meetings
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee_work' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/work-icon.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Works
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li id="logoutButton">
+                    <a href="#">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/logout.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="top">
+            <div class="userDetails">
+                <div class="userImage">
+                    {% if current_user.profile.profile_image %}
+                        <img
+                            src="{{ current_user.profile.profile_image.url }}"
+                            alt="user Image"
+                        />
+                    {% else %}
+                        <img
+                            src="{% static '/images/profile picture.png' %}"
+                            alt="Default user Image"
+                        />
+                    {% endif %}
+                </div>
+                <p class="userName">{{ current_user.profile.name }}</p>
+                <div class="arrow">
+                    <img
+                        src="{% static '/images/down arrow.svg' %}"
+                        alt="Down arrow"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h4>Application</h4>
+            <div class="allApplications">
+                <table class="tableStyle appliedJobTable" id="userTable">
+                    <thead>
+                        <th>Sl no</th>
+                        <th>Employer name</th>
+                        <th>Applied position</th>
+                        <th>Applied date</th>
+                        <th>Result</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        {% for applied_job in applied_jobs %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ applied_job.job.employer }}</td>
+                            <td>{{ applied_job.job }}</td>
+                            <td>{{ applied_job.applied_date|date:'d/m/y' }}</td>
+                            <td  class="appliedJobResults resultChoice" data-result="{{ applied_job.application_status }}">{{ applied_job.get_application_status_display }}</td>
+                            <td>
+                                <button class="employeeViewButton" data-id="{{ applied_job.id }}">view</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="paginationContainer">
+                <div class="text">Showing 1 to 10 User's</div>
+                <div class="paginationNav">
+                    <button id="prevBtn">&lt;</button> <!-- Previous button -->
+                    <div id="pagination" class="pagination"></div>
+                    <button id="nextBtn">&gt;</button> <!-- Next button -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="employeeViewModal" class="employeeViewModal">
+    <form class="employeeViewModal-content" action="{% url 'work_status_update' %}" method="POST">
+        {% csrf_token %}
+        <div class="closeIcon" id="employeeViewClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Details</h4>
+        <div class="pairField">
+            <label for="name">Job tittle</label>
+            <p class="viewJobTitle">UX / UI Designer</p>
+        </div>
+        <div class="pairField">
+            <label for="about">Description</label>
+            <p class="viewJobDescription">
+                We are seeking a creative and detail-oriented UI/UX Designer
+                with a specialization in website design to join our team. The
+                ideal candidate will have a strong portfolio showcasing
+                innovative design solutions and a deep understanding of user
+                experience principles as they relate to web design.
+            </p>
+        </div>
+        <div class="pairField">
+            <label for="name">Requirement</label>
+            <ul class="list">
+                <li>Bachelor's degree in Design, Computer Science, or relevant field.</li>
+            </ul>
+        </div>
+        <div class="pairField">
+            <label for="applied-date">Applied date</label>
+            <p class="viewJobDate"></p>
+        </div>
+        <div class="pairField">
+            <label for="status">Status</label>
+            <p class="viewJobStatus"></p>
+        </div>
+        <div class="pairField">
+            <label for="resume">Resume</label>
+            <div class="pdf">
+                <p id="viewJobResumeName">Resume</p>
+                <div class="downloadIcon">
+                    <a id="viewJobResumeLink" href="" download>
+                        <img
+                        src="../../static/images/download.svg"
+                        alt="Download Icon"
+                        />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pairField">
+            <label for="status">Work status</label>
+            <div class="viewJobStatus">
+                <ul class="methods">
+                    <li class="active" data-method="started"><div class="circle"></div>Started</li>
+                    <li data-method="in_progress"><div class="circle"></div>In progress</li>
+                    <li data-method="work_paused"><div class="circle "></div>work Paused</li>
+                    <li data-method="pending"><div class="circle"></div>Pending</li>
+                    <li data-method="completed"><div class="circle"></div>Completed</li>
+                </ul>
+            </div>
+        </div>
+        <input id="currentJobStatusView" name="currentJobStatusView" hidden>
+        <div class="pairField">
+            <label for="status">Add payment details</label>
+            <button class="addPayment" type="button" id="addPaymentDetails">
+                <div class="addIcon">
+                    <img
+                        src="{% static '/images/add-circle.svg' %}"
+                        alt="Add icon"
+                    />
+                </div>
+                Add payment details
+            </button>
+            <button class="viewPayment" type="button" id="viewPaymentDetails">
+                view payment details
+            </button>
+        </div>
+        <div class="pairField" id="amountPairField">
+            <label for="status">Amount credited</label>
+            <p class="greenText">$ <span id="amountCredited" ></span></p>
+        </div>
+        <input type="text" name="employeeHiddenInput" id="employeeHiddenInput" hidden>
+        <div class="taskButtons">
+            <button class="close" id="employeeViewModalClose" type="button">Cancel</button>
+            <button class="save" id="employeeViewModalSave">Save</button>
+        </div>
+    </form>
+</div>
+<div id="paymentDetailsModal" class="paymentDetailsModal">
+    <form class="paymentDetailsModal-content">
+        <div id="csrf-wrapper">
+            {% csrf_token %}
+        </div>
+        <div class="closeIcon" id="paymentDetailsClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Details</h4>
+        <div class="pairField">
+            <label for="applied-date">Applied date</label>
+            <p class="viewJobDate" id="paymentDetailDate">13/03/2024</p>
+        </div>
+        <div class="pairField">
+            <label for="status">Status</label>
+            <p class="viewJobStatus" id="paymentDetailStatus">SELECTED</p>
+        </div>
+        <div class="pairField">
+            <label for="resume">Resume</label>
+            <div class="pdf">
+                <p id="viewJobResumeName">Resume</p>
+                <div class="downloadIcon">
+                    <a id="paymentDetailResume" href="" download>
+                        <img
+                        src="../../static/images/download.svg"
+                        alt="Download Icon"
+                        />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pairField">
+            <label for="status">Work status</label>
+            <div class="viewJobStatus">
+                <ul class="paymentModalmethods">
+                    <li class="active" data-method="started"><div class="circle"></div>Started</li>
+                    <li data-method="in_progress"><div class="circle"></div>In progress</li>
+                    <li data-method="work_paused"><div class="circle "></div>work Paused</li>
+                    <li data-method="pending"><div class="circle"></div>Pending</li>
+                    <li data-method="completed"><div class="circle"></div>Completed</li>
+                </ul>
+            </div>
+        </div>
+        <input id="currentJobStatus" name="currentJobStatus" hidden>
+        <h4 class="secondTitle">Payment details</h4>
+        <div class="pairField amountPairField">
+            <label for="name">Name</label>
+            <input placeholder="Enter name" name="paymentName" id="paymentName" readonly>
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name">A/C number</label>
+            <input placeholder="Account number. " name="paymentAccountNumber" id="paymentAccountNumber" required>
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name">IFSC number</label>
+            <input placeholder="IFSC number" name="paymentIFSC" id="paymentIFSC" required>
+        </div>
+        <input type="text" id="paymentDetailId" name="paymentDetailId" hidden >
+        <!-- <input type="text" id="paymentDetailHidden" name="paymentDetailId" hidden > -->
+        <div class="taskButtons">
+            <button class="paymentDetailCancel" id="paymentDetailCancel" type="button">Cancel</button>
+            <button class="paymentDetailSave" id="paymentDetailSave">Save</button>
+        </div>
+    </form>
+</div>
+
+<div id="viewPaymentModal" class="viewPaymentModal">
+    <form class="paymentDetailsModal-content" action="{% url 'edit_payment_details' %}" method="POST">
+        {% csrf_token %}
+        <div class="closeIcon" id="viewPaymentClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Details</h4>
+        <div class="pairField amountPairField">
+            <label for="name">Name</label>
+            <input id="viewPaymentName" name="viewPaymentName" readonly/>
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name">A/C number</label>
+            <input id="viewPaymentUPINumber" name="viewPaymentUPINumber" readonly/>
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name">IFSC number</label>
+            <input id="viewPaymentIFSCNumber" name="viewPaymentIFSCNumber" readonly/>
+        </div>
+        <input type="text" id="viewPaymentId" name="viewPaymentId" hidden >
+        <input type="text" id="viewPaymentInstanceId" name="viewPaymentInstanceId" hidden >
+        <div class="taskButtons">
+            <button type="button" id="viewPaymentModalEdit" class="viewPaymentEditButton">edit</button>
+            <button type="submit" class="viewPaymentSaveButton">Save</button>
+        </div>
+    </form>
+</div>
+
+<div id="logoutModal" class="logoutModal">
+    <form class="logoutModal-content" action="{% url 'logout_user' %}" method="POST">
+        {% csrf_token %}
+        <h4>Logout</h4>
+        <p>Are you sure want to logout ?</p>
+        <div class="createButtons">
+            <button class="logoutCancel" id="logoutcancel" type="button">cancel</button>
+            <button class="logoutConfirm" id="logoutsave">Logout</button>
+        </div>
+    </form>
+</div>
+<script>
+    const employeeViewButton = document.querySelectorAll(".employeeViewButton");
+    const employeeViewModal = document.getElementById("employeeViewModal");
+    const employeeViewClose = document.getElementById("employeeViewClose");
+    const appliedJobResults = employeeViewModal.querySelectorAll(".appliedJobResults")
+    const employeeViewModalClose = document.getElementById("employeeViewModalClose");
+
+    const paymentDetailsModal = document.getElementById("paymentDetailsModal")
+    const addPaymentDetails = document.getElementById("addPaymentDetails")
+    const viewPaymentDetails = document.getElementById("viewPaymentDetails")
+    const viewPaymentModalEdit =document.getElementById("viewPaymentModalEdit")
+    const paymentDetailsClose = document.getElementById("paymentDetailsClose")
+
+    const paymentDetailSave = document.getElementById("paymentDetailSave")
+    const paymentDetailCancel = document.getElementById("paymentDetailCancel")
+
+    const afterPaymentModal = document.getElementById("afterPaymentModal")
+    const afterPaymentClose = document.getElementById("afterPaymentClose")
+
+    const viewJobTitle = document.querySelector(".viewJobTitle")
+    const viewJobDescription = document.querySelector(".viewJobDescription")
+    const detailModalRequirements = document.querySelector(".pairField li")
+    const requirementsList = document.querySelector(".pairField .list");
+    const viewJobDate = document.querySelector(".viewJobDate")
+    const viewJobStatus = document.querySelector(".viewJobStatus")
+    const viewJobResumeName = document.getElementById('viewJobResumeName');
+    const viewJobResumeLink = document.getElementById('viewJobResumeLink');
+    const amountPairField =document.getElementById("amountPairField")
+    const amountCredited = document.getElementById("amountCredited")
+    const employeeHiddenInput = document.getElementById('employeeHiddenInput')
+    const paymentDetailHidden  = document.getElementById('paymentDetailHidden')
+    const paymentName = document.getElementById('paymentName')
+    const paymentDetailDate = document.getElementById('paymentDetailDate')
+    const paymentDetailStatus = document.getElementById('paymentDetailStatus')
+    const paymentDetailResume = document.getElementById('paymentDetailResume')
+    const paymentDetailId = document.getElementById('paymentDetailId')
+    const paymentAccountNumber = document.getElementById('paymentAccountNumber')
+    const paymentIFSC = document.getElementById('paymentIFSC')
+    const viewPaymentInstanceId = document.getElementById('viewPaymentInstanceId')
+    const viewPaymentSaveButton =document.querySelector('.viewPaymentSaveButton')
+    const viewPaymentEditButton = document.querySelector('.viewPaymentEditButton')
+    
+    const viewPaymentModal = document.getElementById('viewPaymentModal')
+    const viewPaymentClose = document.getElementById('viewPaymentClose')
+    const viewPaymentId = document.getElementById('viewPaymentId')
+    const viewPaymentName = document.getElementById('viewPaymentName')
+    const viewPaymentUPINumber = document.getElementById('viewPaymentUPINumber')
+    const viewPaymentIFSCNumber = document.getElementById('viewPaymentIFSCNumber')
+    const listItems = document.querySelectorAll('.methods li');
+    const paymentModalmethods = document.querySelectorAll('.paymentModalmethods li')
+
+    const paymentDetailsForm = document.querySelector(".paymentDetailsModal-content")
+    const csrfWrapper = document.querySelector("#csrf-wrapper input[name='csrfmiddlewaretoken']")
+    
+
+    paymentDetailsForm.onsubmit = async (e)=>{
+        e.preventDefault()
+
+        const data = new FormData()
+        data.append("paymentDetailId", paymentDetailId.value)
+        data.append("paymentAccountNumber", paymentAccountNumber.value)
+        data.append("paymentIFSC", paymentIFSC.value)
+        data.append("csrfmiddlewaretoken", csrfWrapper.value)
+
+        const res = await fetch(`{% url 'payment_details' %}`,{
+            method:"POST",
+            credentials: 'same-origin',
+            body:data
+        })
+
+        const response_data = await res.json()
+        
+        if(response_data.StatusCode === 6000){
+            
+        }
+    }
+
+    const priorityColor = document.querySelectorAll(".resultChoice");
+
+    priorityColor.forEach((item) => {
+        const priorityColorValue = item.getAttribute("data-result");
+        console.log(priorityColorValue)
+        if (priorityColorValue === "pending") {
+            item.classList.add("pendingColor");
+        }
+        if (priorityColorValue === "shortlisted") {
+            item.classList.add("selectedColor");
+        }
+        if (priorityColorValue === "rejected") {
+            item.classList.add("rejectedColor");
+        }
+    });
+
+    employeeViewButton.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            // Get the job ID associated with the clicked button
+            const jobApplicationId = button.dataset.id;
+            console.log(jobApplicationId)
+
+            employeeHiddenInput.value = jobApplicationId
+            paymentDetailId.value = jobApplicationId
+            viewPaymentId.value = jobApplicationId
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    const jobApplicationsDetails = JSON.parse(xhr.responseText);
+            
+                    viewJobTitle.innerText = jobApplicationsDetails.title;
+                    viewJobDescription.innerText = jobApplicationsDetails.description;
+                    viewJobDate.innerText = jobApplicationsDetails.applied_date
+                    viewJobStatus.innerText = jobApplicationsDetails.status
+
+                    viewJobResumeLink.href = "{% url 'download_resume' %}?id=" + jobApplicationId;
+                    if (jobApplicationsDetails.button_status == "view"){
+                        addPaymentDetails.classList.add("hideButton")
+                        viewPaymentDetails.classList.remove("hideButton");
+                        amountPairField.classList.remove("hideButton")
+                    }
+                    else {
+                        addPaymentDetails.classList.remove("hideButton")
+                        viewPaymentDetails.classList.add("hideButton")
+                        amountPairField.classList.add("hideButton")
+                    }
+                    amountCredited.innerText = jobApplicationsDetails.amount
+
+                    paymentDetailDate.innerHTML = jobApplicationsDetails.applied_date;
+                    paymentDetailStatus.innerHTML = jobApplicationsDetails.status;
+                    paymentDetailResume.href =  "{% url 'download_resume' %}?id=" + jobApplicationId;
+                    paymentName.value = jobApplicationsDetails.name;
+
+                    
+                    while (requirementsList.firstChild) {
+                        requirementsList.removeChild(requirementsList.firstChild);
+                    }
+
+                    jobApplicationsDetails.requirements.forEach((requirement) => {
+                        const li = document.createElement("li");
+                        li.textContent = requirement;
+                        employeeViewModal.querySelector(".pairField ul").appendChild(li);
+                    });
+
+                    listItems.forEach((item) => {
+                    item.classList.remove("active");
+                    });
+
+                    const currentStatusMethod = jobApplicationsDetails.work_status
+                    document.getElementById('currentJobStatusView').value = jobApplicationsDetails.work_status
+                    const activeListItem = document.querySelector(`.methods li[data-method="${currentStatusMethod}"]`);
+                    if (activeListItem) {
+                        activeListItem.classList.add("active");
+                    }
+
+                    paymentModalmethods.forEach((item) => {
+                    item.classList.remove("active");
+                    });
+
+                    const paymentactiveListItem = document.querySelector(`.paymentModalmethods li[data-method="${currentStatusMethod}"]`);
+                    if (activeListItem) {
+                        paymentactiveListItem.classList.add("active");
+                    }
+
+                    employeeViewModal.style.display = "block";
+                }
+            };
+
+            xhr.open("GET", `/get-job-application-details/?id=${jobApplicationId}`, true);
+            xhr.send();
+        });
+    });
+
+    listItems.forEach((item) => {
+        item.addEventListener('click', function() {
+
+            listItems.forEach((li) => {
+                li.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            const selectedStatus = item.getAttribute('data-method');
+
+            document.getElementById('currentJobStatusView').value = selectedStatus;
+        });
+    });
+
+    paymentModalmethods.forEach((item) => {
+        item.addEventListener('click', function() {
+
+            paymentModalmethods.forEach((li) => {
+                li.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            const selectedStatus = item.getAttribute('data-method');
+
+            document.getElementById('currentJobStatusView').value = selectedStatus;
+        });
+    });
+
+    employeeViewModalClose.onclick = () => {
+        employeeViewModal.style.display = "none";
+    };
+
+    
+    addPaymentDetails.onclick = () => {
+        employeeViewModal.style.display = "none";
+        paymentDetailsModal.style.display = "block";
+    }
+
+    employeeViewClose.onclick = () => {
+        employeeViewModal.style.display = "none";
+    }
+
+    paymentDetailsClose.onclick = () => {
+        paymentDetailsModal.style.display = "none";
+    }
+
+    paymentDetailSave.onclick = () => {
+        paymentDetailsModal.style.display = "none";
+        // afterPaymentModal.style.display = "block";
+    }
+
+    viewPaymentDetails.onclick = () => {
+        employeeViewModal.style.display = "none";
+        
+        const jobApplicationId =  viewPaymentId.value
+
+        const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    const paymentDetails = JSON.parse(xhr.responseText);
+
+                    viewPaymentName.value = paymentDetails.name;
+                    viewPaymentUPINumber.value = paymentDetails.upi_number;
+                    viewPaymentIFSCNumber.value = paymentDetails.ifsc_number;
+                    viewPaymentInstanceId.value = paymentDetails.payment_id;
+
+                    viewPaymentModal.style.display = "block"
+                }
+            };
+
+            xhr.open("GET", `/get-view-payment-details/?id=${jobApplicationId}`, true);
+            xhr.send();
+        
+    }
+
+    viewPaymentModalEdit.onclick = () => {
+        console.log("edit is true")
+        viewPaymentName.readOnly = false;
+        viewPaymentUPINumber.readOnly = false
+        viewPaymentIFSCNumber.readOnly = false;
+        viewPaymentEditButton.style.display = "none"
+        viewPaymentSaveButton.style.display = "block"
+    }
+
+    viewPaymentClose.onclick = () => {
+        viewPaymentModal.style.display = "none"
+        employeeViewModal.style.display = "block";
+        viewPaymentName.readOnly = true;
+        viewPaymentUPINumber.readOnly = true
+        viewPaymentIFSCNumber.readOnly = true;
+        viewPaymentEditButton.style.display = "block"
+        viewPaymentSaveButton.style.display = "none"
+    }
+
+    paymentDetailCancel.onclick = () => {
+        paymentDetailsModal.style.display = "none";
+    }
+
+    // afterPaymentClose.onclick = () => {
+    //     afterPaymentModal.style.display = "none";
+    // }
+
+    appliedJobResults.forEach(result => {
+        if (result.textContent === 'Shortlisted') {
+            result.classList.add('shortlisted');
+        } else if (result.textContent === 'Pending') {
+            result.classList.add('pending');
+        } else {
+            result.classList.add('rejected');
+        }
+    });
+    const logoutModal = document.getElementById("logoutModal");
+    const logoutButton = document.getElementById("logoutButton");
+    const logoutSave = document.getElementById("logoutsave");
+    const logoutCancel = document.getElementById("logoutcancel");
+
+    logoutButton.onclick = () => {
+        logoutModal.style.display = "block";
+    }
+
+    logoutCancel.onclick = () => {
+        logoutModal.style.display = "none";
+    };
+
+    logoutSave.onclick = () => {
+        logoutModal.style.display = "none";
+        window.location.href = "/";
+    };
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        var table = document.getElementById('userTable');
+        var rows = table.getElementsByTagName('tr');
+        var rowsPerPage = 10;
+        var currentPage = 0;
+        function showPage(page) {
+            var start = page * rowsPerPage;
+            var end = start + rowsPerPage;
+            for (var i = 0; i < rows.length; i++) {
+                if (i >= start && i < end) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+        function createPagination() {
+            var pageCount = Math.ceil(rows.length / rowsPerPage);
+            var pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            for (var i = 0; i < pageCount; i++) {
+                var button = document.createElement('button');
+                button.innerText = i + 1;
+                button.addEventListener('click', function() {
+                    currentPage = parseInt(this.innerText) - 1;
+                    showPage(currentPage);
+                });
+                pagination.appendChild(button);
+            }
+        }
+        function updatePagination() {
+            var buttons = document.querySelectorAll('.pagination button');
+            buttons.forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            buttons[currentPage].classList.add('active');
+        }
+        createPagination();
+        showPage(currentPage);
+        var prevBtn = document.getElementById('prevBtn');
+        var nextBtn = document.getElementById('nextBtn');
+        prevBtn.addEventListener('click', function() {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+                updatePagination();
+            }
+        });
+        nextBtn.addEventListener('click', function() {
+            if (currentPage < Math.ceil(rows.length / rowsPerPage) - 1) {
+                currentPage++;
+                showPage(currentPage);
+                updatePagination();
+            }
+        });
+    });
+</script>
+{% endblock %}

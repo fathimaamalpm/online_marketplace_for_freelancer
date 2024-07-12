@@ -1,0 +1,275 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section id="employerMeeting">
+    <div class="left">
+        <div class="leftLogo">
+            <img src="{% static '/images/logo white.svg' %}" alt="logo" />
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'employee_dashboard' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/dashboard.svg' %}"
+                                alt="Dashboard"
+                            />
+                        </div>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee_job' %}" >
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/job.svg' %}"
+                                alt="job"
+                            />
+                        </div>
+                        Job
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee_application' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/application.svg' %}"
+                                alt="application"
+                            />
+                        </div>
+                        Application
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee_meeting' %}" class="active">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/meeting.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Meetings
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employee_work' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/work-icon.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Works
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li id="logoutButton">
+                    <a href="#">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/logout.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="top">
+            <div class="userDetails">
+                <div class="userImage">
+                    {% if current_user.profile.profile_image %}
+                        <img
+                            src="{{ current_user.profile.profile_image.url }}"
+                            alt="user Image"
+                        />
+                    {% else %}
+                        <img
+                            src="{% static '/images/profile picture.png' %}"
+                            alt="Default user Image"
+                        />
+                    {% endif %}
+                </div>
+                <p class="userName">{{ current_user.profile.name }}</p>
+                <div class="arrow">
+                    <img
+                        src="{% static '/images/down arrow.svg' %}"
+                        alt="Down arrow"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="contentTop">
+                <h4>Meeting</h4>
+            </div>
+            <div class="ApplicationsTableContainer">
+                <table class="tableStyle allApplications" id="userTable">
+                    <thead>
+                        <th>Sl no</th>
+                        <th>Name</th>
+                        <th>Time</th>
+                        <th>Link</th>
+                        <!-- <th>Action</th> -->
+                    </thead>
+                    <tbody>
+                        {% for meeting in meetings %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ meeting.created_by.name }}</td>
+                            <td>{{ meeting.meet_date|date:"d/m/Y h:i A" }}</td>
+                            <td><a href="{{ meeting.link }}">{{ meeting.link }}</a></td>
+                            <!-- <td>
+                                <button class="updateButton" data-id="{{ application.id }}">
+                                    Delete
+                                </button>
+                            </td> -->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="paginationContainer">
+                    <div class="text">Showing 1 to 10 User's</div>
+                    <div class="paginationNav">
+                        <button id="prevBtn">&lt;</button> <!-- Previous button -->
+                        <div id="pagination" class="pagination"></div>
+                        <button id="nextBtn">&gt;</button> <!-- Next button -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="createMeeting" class="createMeeting">
+    <form class="createMeeting-content" action="{% url 'create_meeting' %}" method="POST">
+        {% csrf_token %}
+        <div class="closeIcon" id="meetingModalClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Schedule Meeting</h4>
+        <div class="pairField amountPairField">
+            <label for="name" >Name</label>
+            <select id="assigneto" name="employee_id" class="dropDownList">
+                {% for employee in employees %}
+                <option value="{{ employee.profile.id }}">{{ employee.profile.name }}  -  {{ employee.profile.designation }} - {{ employee.profile.id }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name" >Date</label>
+            <input type="text" placeholder="YYYY-MM-DD HH:MM" name="meet_date">
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name" >Link</label>
+            <input type="text" placeholder="Link" name="link">
+        </div>
+        <div class="taskButtons">
+            <button class="reject" id="meetingCancel" type="button">cancel</button>
+            <button class="select" id="meetingSave">Schedule</button>
+        </div>
+    </form>
+</div>
+<div id="logoutModal" class="logoutModal">
+    <form class="logoutModal-content" action="{% url 'logout_user' %}" method="POST">
+        {% csrf_token %}
+        <h4>Logout</h4>
+        <p>Are you sure want to logout ?</p>
+        <div class="createButtons">
+            <button class="logoutCancel" id="logoutcancel" type="button">cancel</button>
+            <button class="logoutConfirm" id="logoutsave">Logout</button>
+        </div>
+    </form>
+</div>
+<script>
+    // const createMeetingButton = document.getElementById("createMeetingButton")
+    const createMeetingModal = document.getElementById("createMeeting")
+    const meetingModalClose = document.getElementById("meetingModalClose")
+    const meetingCancel = document.getElementById("meetingCancel")
+
+    meetingModalClose.onclick = () => {
+        createMeetingModal.style.display = "none"
+    }
+    meetingCancel.onclick = () => {
+        createMeetingModal.style.display = "none"
+    }
+        
+    const logoutModal = document.getElementById("logoutModal");
+    const logoutButton = document.getElementById("logoutButton");
+    const logoutSave = document.getElementById("logoutsave");
+    const logoutCancel = document.getElementById("logoutcancel");
+
+    logoutButton.onclick = () => {
+        logoutModal.style.display = "block";
+    }
+
+    logoutCancel.onclick = () => {
+        logoutModal.style.display = "none";
+    };
+
+    logoutSave.onclick = () => {
+        logoutModal.style.display = "none";
+        window.location.href = "/";
+    };
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById('userTable');
+    var rows = table.getElementsByTagName('tr');
+    var rowsPerPage = 10;
+    var currentPage = 0;
+    function showPage(page) {
+        var start = page * rowsPerPage;
+        var end = start + rowsPerPage;
+        for (var i = 0; i < rows.length; i++) {
+            if (i >= start && i < end) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+    function createPagination() {
+        var pageCount = Math.ceil(rows.length / rowsPerPage);
+        var pagination = document.getElementById('pagination');
+        pagination.innerHTML = '';
+        for (var i = 0; i < pageCount; i++) {
+            var button = document.createElement('button');
+            button.innerText = i + 1;
+            button.addEventListener('click', function() {
+                currentPage = parseInt(this.innerText) - 1;
+                showPage(currentPage);
+            });
+            pagination.appendChild(button);
+        }
+    }
+    function updatePagination() {
+        var buttons = document.querySelectorAll('.pagination button');
+        buttons.forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        buttons[currentPage].classList.add('active');
+    }
+    createPagination();
+    showPage(currentPage);
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    prevBtn.addEventListener('click', function() {
+        if (currentPage > 0) {
+            currentPage--;
+            showPage(currentPage);
+            updatePagination();
+        }
+    });
+    nextBtn.addEventListener('click', function() {
+        if (currentPage < Math.ceil(rows.length / rowsPerPage) - 1) {
+            currentPage++;
+            showPage(currentPage);
+            updatePagination();
+        }
+    });
+});
+</script>
+{% endblock %}

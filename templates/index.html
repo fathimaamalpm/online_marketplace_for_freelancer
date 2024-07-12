@@ -1,0 +1,374 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+		<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+        
+        <!-- title of site -->
+        <title>Freelance</title>
+
+        <!-- For favicon png -->
+		<link rel="shortcut icon" type="image/icon" href="{% static '/logo/favicon.png' %}"/>
+       
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="{% static 'index/font-awesome.min.css' %}">
+
+        <!--linear icon css-->
+		<link rel="stylesheet" href="{% static 'index/linearicons.css' %}">
+
+        <!--flaticon.css-->
+		<link rel="stylesheet" href="{% static 'index/flaticon.css' %}">
+
+		<!--animate.css-->
+        <link rel="stylesheet" href="{% static 'index/animate.css' %}">
+
+        <!--owl.carousel.css-->
+        <link rel="stylesheet" href="{% static 'index/owl.carousel.min.css' %}">
+		<link rel="stylesheet" href="{% static 'index/owl.theme.default.min.css' %}">
+		
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="{% static 'index/bootstrap.min.css' %}">
+		
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="{% static 'index/bootsnav.css' %}" >	
+        
+        <!--style.css-->
+        <link rel="stylesheet" href="{% static 'index/style.css' %}">
+        
+        <!--responsive.css-->
+        <link rel="stylesheet" href="{% static 'index/responsive.css' %}">
+		<link rel="stylesheet" href="{% static '/css/style.css' %}">
+    </head>
+	
+	<body>
+	
+		<!--welcome-hero start -->
+		<section id="home" class="welcome-hero">
+
+			<!-- top-area Start -->
+			<div class="top-area">
+				<div class="header-area">
+					<!-- Start Navigation -->
+				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+				        <div class="container">
+
+				            <!-- Start Header Navigation -->
+				            <div class="navbar-header">
+				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+				                    <i class="fa fa-bars"></i>
+				                </button>
+				                <a class="navbar-brand" href="{% url 'index' %}">Freelance<span></span></a>
+
+				            </div>
+
+				            <!-- Collect the nav links, forms, and other content for toggling -->
+				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+				                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+				                    <li class=" scroll active"><a href="#home">home</a></li>
+				                    <li class="scroll"><a href="#service">works</a></li>
+				                    <li class="scroll"><a href="#clients-say">Clients</a></li>
+									<li class="scroll"><a href="/login/">Log In</a></li>
+									<!-- <a class="welcome-btn" href="{% url 'login' %}">Log in</a> -->
+				                </ul><!--/.nav -->
+				            </div><!-- /.navbar-collapse -->
+				        </div><!--/.container-->
+				    </nav><!--/nav-->
+				    <!-- End Navigation -->
+				</div><!--/.header-area-->
+			    <div class="clearfix"></div>
+
+			</div><!-- /.top-area-->
+			<!-- top-area End -->
+
+			<div class="container">
+				<div class="welcome-hero-txt">
+					<h2>Where Freelancers and Clients Unite in a Creative Frenzy of Awesomeness!
+					</h2>
+					<!-- <a href="{% url 'admin_dashboard' %}"></a> -->
+					<!-- <a class="welcome-btn" href="{% url 'login' %}">Log in</a> -->
+				</div>
+			</div>
+
+		</section><!--/.welcome-hero-->
+		<!--welcome-hero end -->
+
+		<!--service start -->
+		<section id="service" class="service">
+			<section class="wrappers">
+				<div class="container">
+					<div class="service-content">
+						<div class="row">
+							<div class="col-md-4 col-sm-6">
+								<div class="single-service-item">
+									<div class="single-service-icon">
+										<i class="flaticon-car"></i>
+									</div>
+									<h2><a href="#">Spectacular Design
+										<span>Masterpieces</span>Unleashed!</a></h2>
+									<p>
+										Dive into a world of jaw-dropping designs that will leave you speechless.  
+									</p>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<div class="single-service-item">
+									<div class="single-service-icon">
+										<i class="flaticon-car-repair"></i>
+									</div>
+									<h2><a href="#">Epic Writing Adventures Await You!</a></h2>
+									<p>
+										Explore captivating stories and compelling content crafted by our talented wordsmiths.  
+									</p>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-6">
+								<div class="single-service-item">
+									<div class="single-service-icon">
+										<i class="flaticon-car-1"></i>
+									</div>
+									<h2><a href="#">Innovative Solutions for Your Business Needs</a></h2>
+									<p>
+										Discover groundbreaking strategies and solutions tailored to elevate your business to new heights. 
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div><!--/.container-->
+			</section>
+
+		</section><!--/.service-->
+		<!--service end-->
+
+		<!-- clients-say strat -->
+		<section class="wrappers">
+			<section id="clients-say"  class="clients-say">
+				<div class="container">
+					<div class="section-header">
+						<h2>Our Clients</h2>
+					</div><!--/.section-header-->
+					<div class="row">
+						<div class="owl-carousel testimonial-carousel">
+							<div class="col-sm-3 col-xs-12">
+								<div class="single-testimonial-box">
+									<div class="testimonial-description">
+										<div class="testimonial-info">
+											<div class="testimonial-img">
+												<img src="{% static 'index-images/clients/c1.png' %}" alt="image of clients person" />
+											</div><!--/.testimonial-img-->
+										</div><!--/.testimonial-info-->
+										<div class="testimonial-comment">
+											<p>
+												Unleashing creativity at its best! Frenzy has been my go-to place for exciting projects and collaborations. 
+											</p>
+										</div><!--/.testimonial-comment-->
+										<div class="testimonial-person">
+											<h2><a href="#">tomas lili</a></h2>
+											<h4>new york</h4>
+										</div><!--/.testimonial-person-->
+									</div><!--/.testimonial-description-->
+								</div><!--/.single-testimonial-box-->
+							</div><!--/.col-->
+							<div class="col-sm-3 col-xs-12">
+								<div class="single-testimonial-box">
+									<div class="testimonial-description">
+										<div class="testimonial-info">
+											<div class="testimonial-img">
+												<img src="{% static 'index-images/clients/c2.png' %}" alt="image of clients person" />
+											</div><!--/.testimonial-img-->
+										</div><!--/.testimonial-info-->
+										<div class="testimonial-comment">
+											<p>
+												Absolutely mind-blowing experience working with Frenzy! They turned my ideas into reality. 
+											</p>
+										</div><!--/.testimonial-comment-->
+										<div class="testimonial-person">
+											<h2><a href="#">romi rain</a></h2>
+											<h4>london</h4>
+										</div><!--/.testimonial-person-->
+									</div><!--/.testimonial-description-->
+								</div><!--/.single-testimonial-box-->
+							</div><!--/.col-->
+							<div class="col-sm-3 col-xs-12">
+								<div class="single-testimonial-box">
+									<div class="testimonial-description">
+										<div class="testimonial-info">
+											<div class="testimonial-img">
+												<img src="{% static 'index-images/clients/c3.png' %}" alt="image of clients person" />
+											</div><!--/.testimonial-img-->
+										</div><!--/.testimonial-info-->
+										<div class="testimonial-comment">
+											<p>
+												Frenzy is a game-changer! Their platform connected me with top-notch clients who appreciate quality work. 
+											</p>
+										</div><!--/.testimonial-comment-->
+										<div class="testimonial-person">
+											<h2><a href="#">john doe</a></h2>
+											<h4>washington</h4>
+										</div><!--/.testimonial-person-->
+									</div><!--/.testimonial-description-->
+								</div><!--/.single-testimonial-box-->
+							</div><!--/.col-->
+						</div><!--/.testimonial-carousel-->
+					</div><!--/.row-->
+				</div><!--/.container-->
+
+			</section><!--/.clients-say-->	
+		</section>
+		<!-- clients-say end -->
+
+		<!--brand strat -->
+		<section id="brand"  class="brand">
+			<div class="container">
+				<div class="brand-area">
+					<div class="owl-carousel owl-theme brand-item">
+						<div class="item">
+							<a href="#">
+								<img src="{% static 'index-images/brand/br1.png' %}" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+						<div class="item">
+							<a href="#">
+								<img src="{% static 'index-images/brand/br2.png' %}" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+						<div class="item">
+							<a href="#">
+								<img src="{% static 'index-images/brand/br3.png' %}" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+						<div class="item">
+							<a href="#">
+								<img src="{% static 'index-images/brand/br4.png' %}" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+
+						<div class="item">
+							<a href="#">
+								<img src="{% static 'index-images/brand/br5.png' %}" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+
+						<div class="item">
+							<a href="#">
+								<img src="{% static 'index-images/brand/br6.png' %}" alt="brand-image" />
+							</a>
+						</div><!--/.item-->
+					</div><!--/.owl-carousel-->
+				</div><!--/.clients-area-->
+
+			</div><!--/.container-->
+
+		</section><!--/brand-->	
+		<!--brand end -->
+
+		<!--blog start -->
+		<section id="blog" class="blog"></section><!--/.blog-->
+		<!--blog end -->
+
+		<!--contact start-->
+		<footer id="contact"  class="contact">
+			<div class="container">
+				<div class="footer-top">
+					<div class="row">
+						<div class="col-md-3 col-sm-6">
+							<div class="single-footer-widget">
+								<div class="footer-logo">
+									<a href="index.html">Freelance</a>
+								</div>
+								<p>
+									Ased do eiusm tempor incidi ut labore et dolore magnaian aliqua. Ut enim ad minim veniam.
+								</p>
+								<div class="footer-contact">
+									<p>info@freelance.com</p>
+									<p>+1 (885) 2563154554</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-offset-1 col-md-3 col-sm-6">
+							<div class="single-footer-widget">
+								<h2>news letter</h2>
+								<div class="footer-newsletter">
+									<p>
+										Subscribe to get latest news  update and informations
+									</p>
+								</div>
+								<div class="hm-foot-email">
+									<div class="foot-email-box">
+										<input type="text" class="form-control" placeholder="Add Email">
+									</div><!--/.foot-email-box-->
+									<div class="foot-email-subscribe">
+										<span><i class="fa fa-arrow-right"></i></span>
+									</div><!--/.foot-email-icon-->
+								</div><!--/.hm-foot-email-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright">
+					<div class="row">
+						<div class="col-sm-6">
+							<p>
+								&copy; copyright.designed and developed by <a href="https://www.ruppellssolutions.com/">Ruppells Solutions</a>.
+							</p><!--/p-->
+						</div>
+						<div class="col-sm-6">
+							<div class="footer-social">
+								<a href="#"><i class="fa fa-facebook"></i></a>	
+								<a href="#"><i class="fa fa-instagram"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+								<a href="#"><i class="fa fa-pinterest-p"></i></a>
+								<a href="#"><i class="fa fa-behance"></i></a>	
+							</div>
+						</div>
+					</div>
+				</div><!--/.footer-copyright-->
+			</div><!--/.container-->
+
+			<div id="scroll-Top">
+				<div class="return-to-top">
+					<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
+				</div>
+				
+			</div><!--/.scroll-Top-->
+			
+        </footer><!--/.contact-->
+		<!--contact end-->
+
+
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="{% static 'index-js/js/jquery.js' %}"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="{% static 'index-js/js/bootstrap.min.js' %}"></script>
+		
+		<!-- bootsnav js -->
+		<script src="{% static 'index-js/js/bootsnav.js' %}"></script>
+
+		<!--owl.carousel.js-->
+        <script src="{% static 'index-js/js/owl.carousel.min.js' %}"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+        <!--Custom JS-->
+        <script src="{% static 'index-js/js/custom.js' %}"></script>
+        
+    </body>
+	
+</html>

@@ -1,0 +1,217 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section id="employerMeeting">
+    <div class="left">
+        <div class="leftLogo">
+            <img src="{% static '/images/logo white.svg' %}" alt="logo" />
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'employer_dashboard' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/dashboard.svg' %}"
+                                alt="Dashboard"
+                            />
+                        </div>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer_job' %}" >
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/job.svg' %}"
+                                alt="job"
+                            />
+                        </div>
+                        Job
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer_application' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/application.svg' %}"
+                                alt="application"
+                            />
+                        </div>
+                        Application
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer_meeting' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/meeting.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Schedule Meeting
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer_work' %}" class="active">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/work-icon.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Works
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li id="logoutButton">
+                    <a href="#">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/logout.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="top">
+            <div class="userDetails">
+                <div class="userImage">
+                    {% if current_user.profile.profile_image %}
+                        <img
+                            src="{{ current_user.profile.profile_image.url }}"
+                            alt="user Image"
+                        />
+                    {% else %}
+                        <img
+                            src="{% static '/images/profile picture.png' %}"
+                            alt="Default user Image"
+                        />
+                    {% endif %}
+                </div>
+                <p class="userName">{{ current_user.profile.name }}</p>
+                <div class="arrow">
+                    <img
+                        src="{% static '/images/down arrow.svg' %}"
+                        alt="Down arrow"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="contentTop">
+                <h4>Work</h4>
+                <!-- <button class="createJob" id="createMeetingButton">
+                    <div class="addIcon">
+                        <img
+                            src="{% static '/images/add-icon.svg' %}"
+                            alt="Add icon"
+                        />
+                    </div>
+                    New Meeting
+                </button> -->
+            </div>
+            <div class="ApplicationsTableContainer">
+                <table class="tableStyle allApplications" id="userTable">
+                    <thead>
+                        <th>Sl no</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Employee</th>
+                        <th>Uploaded on</th>
+                        <th>File</th>
+                    </thead>
+                    <tbody>
+                        {% for employer_work in employer_works %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ employer_work.title }}</td>
+                            <td>{{ employer_work.description }}</td>
+                            <td>{{ employer_work.uploaded_by }}</td>
+                            <td>{{ employer_work.uploaded_on|date:"d/m/Y h:i A" }}</td>
+                            <td><a href="{{ employer_work.work.url }}" download style="display: flex; gap: px; align-items: center; gap: 5px; justify-content: center;"><div><img src="{% static '/images/download.svg' %}" alt="Download"></div>Download</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="createMeeting" class="createMeeting">
+    <form class="createMeeting-content" action="{% url 'create_meeting' %}" method="POST">
+        {% csrf_token %}
+        <div class="closeIcon" id="meetingModalClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Schedule Meeting</h4>
+        <div class="pairField amountPairField">
+            <label for="name" >Name</label>
+            <select id="assigneto" name="employee_id" class="dropDownList">
+                {% for employee in employees %}
+                <option value="{{ employee.profile.id }}">{{ employee.profile.name }}  -  {{ employee.profile.designation }} - {{ employee.profile.id }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name" >Date</label>
+            <input type="text" placeholder="YYYY-MM-DD HH:MM" name="meet_date">
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name" >Link</label>
+            <input type="text" placeholder="Link" name="link">
+        </div>
+        <div class="taskButtons">
+            <button class="reject" id="meetingCancel" type="button">cancel</button>
+            <button class="select" id="meetingSave">Schedule</button>
+        </div>
+    </form>
+</div>
+<div id="logoutModal" class="logoutModal">
+    <form class="logoutModal-content" action="{% url 'logout_user' %}" method="POST">
+        {% csrf_token %}
+        <h4>Logout</h4>
+        <p>Are you sure want to logout ?</p>
+        <div class="createButtons">
+            <button class="logoutCancel" id="logoutcancel" type="button">cancel</button>
+            <button class="logoutConfirm" id="logoutsave">Logout</button>
+        </div>
+    </form>
+</div>
+<script>
+
+    const createMeetingModal = document.getElementById("createMeeting")
+    const meetingModalClose = document.getElementById("meetingModalClose")
+    const meetingCancel = document.getElementById("meetingCancel")
+
+   
+    meetingModalClose.onclick = () => {
+        createMeetingModal.style.display = "none"
+    }
+    meetingCancel.onclick = () => {
+        createMeetingModal.style.display = "none"
+    }
+        
+    const logoutModal = document.getElementById("logoutModal");
+    const logoutButton = document.getElementById("logoutButton");
+    const logoutSave = document.getElementById("logoutsave");
+    const logoutCancel = document.getElementById("logoutcancel");
+
+    logoutButton.onclick = () => {
+        logoutModal.style.display = "block";
+    }
+
+    logoutCancel.onclick = () => {
+        logoutModal.style.display = "none";
+    };
+
+    logoutSave.onclick = () => {
+        logoutModal.style.display = "none";
+        window.location.href = "/";
+    };
+</script>
+{% endblock %}

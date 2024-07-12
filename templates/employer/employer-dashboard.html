@@ -1,0 +1,709 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section id="employerDashboard">
+    <div class="left">
+        <div class="leftLogo">
+            <img src="{% static '/images/logo white.svg' %}" alt="logo" />
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'employer_dashboard' %}" class="active">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/dashboard.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer_job' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/job.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Job
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer_application' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/application.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Application
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer_meeting' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/meeting.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Schedule Meeting
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'employer_work' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/work-icon.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Works
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li id="logoutButton">
+                    <a href="#">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/logout.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="top">
+            <div class="userDetails">
+                <div class="userImage">
+                    {% if current_user.profile.profile_image %}
+                        <img
+                            src="{{ current_user.profile.profile_image.url }}"
+                            alt="user Image"
+                        />
+                    {% else %}
+                        <img
+                            src="{% static '/images/profile picture.png' %}"
+                            alt="Default user Image"
+                        />
+                    {% endif %}
+                </div>
+                <p class="userName">{{ current_user.profile.name }}</p>
+                <div class="arrow">
+                    <img
+                        src="{% static '/images/down arrow.svg' %}"
+                        alt="Down arrow"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h4>Dashboard</h4>
+            <div class="cards">
+                <div class="card">
+                    <div class="cardLeft">
+                        <div class="cardIcon">
+                            <img
+                                src="{% static '/images/posted-job.svg' %}"
+                                alt="Posted jobs icon"
+                            />
+                        </div>
+                    </div>
+                    <div class="cardRight">
+                        <p class="cardTitle">Posted jobs</p>
+                        <p class="count">{{ job_count }}</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardLeft">
+                        <div class="cardIcon">
+                            <img
+                                
+                                src="{% static '/images/pending-request-icon.svg' %}"
+                                alt="Posted jobs icon"
+                            />
+                        </div>
+                    </div>
+                    <div class="cardRight">
+                        <p class="cardTitle">Received applications</p>
+                        <p class="count">{{ applications_count }}</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardLeft">
+                        <div class="cardIcon">
+                            <img
+                                src="{% static '/images/shortlisted.svg' %}"
+                                alt="Posted jobs icon"
+                            />
+                        </div>
+                    </div>
+                    <div class="cardRight">
+                        <p class="cardTitle">Shorlisted</p>
+                        <p class="count">{{ shorlisted_count }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="recentApplications">
+                <h5>Recent application</h5>
+                <a  href="{% url 'employer_application' %}" class="viewAll">
+                    <p>View all</p>
+                    <div class="rightArrow">
+                        <img
+                            src="../../static/images/view-right-arrow.svg"
+                            alt=""
+                        />
+                    </div>
+                </a>
+            </div>
+            <div class="recentApplicationsTableContainer">
+                <table class="tableStyle recentApplicationsTable">
+                    <thead>
+                        <th>Sl no</th>
+                        <th>Name</th>
+                        <th>Applied position</th>
+                        <th>Applied date</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        {% for application in applications %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ application.profile }}</td>
+                            <td>{{ application.job }}</td>
+                            <td>{{ application.applied_date|date:'d/m/y' }}</td>
+        
+                            <td>
+                                <button class="updateButton {% if application.application_status == 'shortlisted' %}selected{% elif application.application_status == 'rejected' %}rejected{% endif %}" data-id="{{ application.id }}">
+                                    {% if application.application_status == 'shortlisted' %}selected{% elif application.application_status == 'rejected'%}Rejected{% else %}Update{% endif %}
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="updateModal" class="updateModal">
+    <form class="updateModal-content">
+        <div class="closeIcon" id="updateClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Details</h4>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="viewJobEmployeeName">Safwan</p>
+        </div>
+        <div class="pairField">
+            <label for="about">About</label>
+            <p class="updateAbout">
+            </p>
+        </div>
+        <div class="pairField">
+            <label for="name">Applied date</label>
+            <p class="updateAppliedDate">19 / 12 / 2023</p>
+        </div>
+        <div class="pairField">
+            <label for="resume">Resume</label>
+            <div class="pdf">
+                <p>Resume.pdf</p>
+                <div class="downloadIcon">
+                    <a href="" id="updateJobResumeLink">
+                        <img src="../../static/images/download.svg" alt="Download Icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <input id="updateEmployeeId" name="updateEmployeeId" hidden>
+        <div class="taskButtons">
+            <button class="reject" id="updateReject" type="button">Reject</button>
+            <button class="select" id="updateSelect" type="button">Select</button>
+        </div>
+    </form>
+</div>
+
+<div id="paymentDetailsModal" class="paymentDetailsModal">
+    <form class="paymentDetailsModal-content">
+        {% csrf_token %}
+        <div class="closeIcon" id="paymentDetailClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Details</h4>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="paymentDetailName">Safwan</p>
+        </div>
+        <div class="pairField">
+            <label for="name">Employer name</label>
+            <p class="paymentDetailEmployer">Safwan</p>
+        </div>
+        <div class="pairField">
+            <label for="about">About</label>
+            <p class="paymentDetailAbout">
+                Passionate Senior UX/UI Designer with a proven track record of
+                transforming complex user needs into elegant, intuitive
+                interfaces. Bringing over a decade of experience, I specialize
+                in creating seamless and visually compelling digital experiences
+                that prioritize user satisfaction. Adept at combining creativity
+                with strategic thinking to elevate product designs and drive
+                user engagement.
+            </p>
+        </div>
+        <div class="pairField">
+            <label for="name">Applied date</label>
+            <p class="paymentDetailDate">19 / 12 / 2023</p>
+        </div>
+        <div class="pairField">
+            <label for="resume">Resume</label>
+            <div class="pdf">
+                <p>Resume.pdf</p>
+                <div class="downloadIcon">
+                    <a href="" id="paymentResumeLink">
+                        <img src="../../static/images/download.svg" alt="Download Icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pairField">
+            <label for="name">Work status</label>
+            <p class="paymentDetailWorkStatus">In progress</p>
+        </div>
+        <h4>Payment details</h4>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="paymentName">Safwan T P</p>
+        </div>
+        <div class="pairField">
+            <label for="name">UPI number</label>
+            <p class="paymentUPI">134234567</p>
+        </div>
+        <div class="pairField">
+            <label for="name">IFSC number</label>
+            <p class="paymentIFSC">G3456789</p>
+        </div>
+        <input id="employeeApplicationId" name="applicationId" hidden>
+        <div class="taskButtons">
+            <button class="save" id="makePayment" type="button">Make payment</button>
+        </div>
+    </form>
+</div>
+
+<div id="selectPaymentModal" class="selectPaymentModal">
+    <form class="selectPaymentModal-content" action="{% url 'make_payment' %}" method="POST">
+    <!-- <form class="selectPaymentModal-content"> -->
+        {% csrf_token %}
+        <div class="closeIcon" id="selectPaymentClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Select payment method</h4>
+        <p class="miniTitle">Payment method</p>
+        <ul class="methods">
+            <li class="active" data-method="gpay"><div class="circle"></div>gpay</li>
+            <li data-method="paypal"><div class="circle"></div>paypal</li>
+            <li data-method="credit_card"><div class="circle"></div>credit card</li>
+        </ul>
+        <input id="selectedPaymentMethod" name="selected_payment_method" hidden>
+        <p class="miniTitle">Payment details</p>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="selectPaymentName">Safwan T P</p>
+        </div>
+        <div class="pairField">
+            <label for="name">UPI number</label>
+            <p class="selectPaymentUPI">134234567</p>
+        </div>
+        <div class="pairField">
+            <label for="name">IFSC number</label>
+            <p class="selectPaymentIFSC">G3456789</p>
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name">Enter amount</label>
+            <input type="number" name="amount" required>
+        </div>
+        <div class="pairField" >
+            <label for="name" class="total">Total amount</label>
+            <p class="total">: $ <span id="selectPaymentTotalAmount">12000</span></p>
+        </div>
+        <input id="selectPaymentHidden" name="applicationId" hidden>
+        <div class="taskButtons">
+            <button class="paymentSave" id="saveButton">save</button>
+        </div>
+    </form>
+</div>
+
+<div id="paymentSuccessModal" class="paymentSuccessModal">
+    <form class="paymentSuccessModal-content">
+        {% csrf_token %}
+        <div class="closeIcon" id="paymentSuccessClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <div class="tickMark">
+            <img src="{% static '/images/green-white-tick.png' %}" alt="Green white tick">
+        </div>
+        <h4>Payment Successfull</h4>
+        <p>Your payment has been successfully completed</p>
+    </form>
+</div>
+
+<div id="selectedEmployeeModal" class="selectedEmployeeModal">
+    <form class="selectedEmployeeModal-content">
+        {% csrf_token %}
+        <div class="closeIcon" id="selectedEmployeeClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Details</h4>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="viewJobEmployeeName">Safwan</p>
+        </div>
+        <div class="pairField">
+            <label for="about">About</label>
+            <p class="updateAbout">
+                Passionate Senior UX/UI Designer with a proven track record of
+                transforming complex user needs into elegant, intuitive
+                interfaces. Bringing over a decade of experience, I specialize
+                in creating seamless and visually compelling digital experiences
+                that prioritize user satisfaction. Adept at combining creativity
+                with strategic thinking to elevate product designs and drive
+                user engagement.
+            </p>
+        </div>
+        <div class="pairField">
+            <label for="name">Applied date</label>
+            <p class="updateAppliedDate">19 / 12 / 2023</p>
+        </div>
+        <div class="pairField">
+            <label for="resume">Resume</label>
+            <div class="pdf">
+                <p>Resume.pdf</p>
+                <div class="downloadIcon">
+                    <a href="" id="viewJobResumeLink">
+                        <img src="../../static/images/download.svg" alt="Download Icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pairField">
+            <label for="name">Work status</label>
+            <p class="updateAppliedDate">In progress</p>
+        </div>
+        <h4>Payment details</h4>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p >Safwan T P</p>
+        </div>
+        <div class="pairField">
+            <label for="name">UPI number</label>
+            <p>134234567</p>
+        </div>
+        <div class="pairField">
+            <label for="name">IFSC number</label>
+            <p>G3456789</p>
+        </div>
+        <div class="pairField">
+            <label for="name" class="amountPaid">Amount paid</label>
+            <p class="amount"> $4300</p>
+        </div>
+        
+        <input id="employeeApplicationId" name="applicationId" hidden>
+    </form>
+</div>
+
+
+<div id="logoutModal" class="logoutModal">
+    <form class="logoutModal-content" action="{% url 'logout_user' %}" method="POST">
+        {% csrf_token %}
+        <h4>Logout</h4>
+        <p>Are you sure want to logout ?</p>
+        <div class="createButtons">
+            <button type="button" class="logoutCancel" id="logoutcancel">cancel</button>
+            <button class="logoutConfirm" id="logoutsave">Logout</button>
+        </div>
+    </form>
+</div>
+<script>
+    const updateButtons = document.querySelectorAll(".updateButton");
+    const updateModal = document.getElementById("updateModal");
+    const updateClose = document.getElementById("updateClose");
+    const updateModalContent = document.querySelector(".updateModal-content");
+
+    const updateReject = document.getElementById("updateReject")
+    const updateSelect = document.getElementById("updateSelect");
+
+    const paymentDetailsModal = document.getElementById("paymentDetailsModal");
+    // const paymentDetailsModal = document.getElementById("selectedEmployeeModal");
+    // const selectedEmployeeModal = document.getElementById("selectedEmployeeModal");
+    const selectedEmployeeClose =document.getElementById("selectedEmployeeClose")
+
+    const paymentDetailClose =document.getElementById("paymentDetailClose");
+    const makePayment = document.getElementById("makePayment")
+
+    const selectPaymentModal = document.getElementById("selectPaymentModal")
+    const selectPaymentClose = document.getElementById("selectPaymentClose")
+
+    const saveButton = document.getElementById("saveButton")
+    const paymentSuccessModal = document.getElementById("paymentSuccessModal")
+    const paymentSuccessClose = document.getElementById("paymentSuccessClose")
+
+    const viewJobemployeeName = document.querySelector(".viewJobEmployeeName")
+    const updateAbout = document.querySelector(".updateAbout")
+    const updateAppliedDate = document.querySelector(".updateAppliedDate")
+    const viewJobResumeName = document.getElementById('viewJobResumeName');
+    const updateJobResumeLink = document.getElementById('updateJobResumeLink');
+
+    const updateEmployeeId = document.getElementById('updateEmployeeId');
+    const paymentDetailName = document.querySelector('.paymentDetailName');
+    const paymentDetailEmployer = document.querySelector('.paymentDetailEmployer');
+    const paymentDetailAbout = document.querySelector('.paymentDetailAbout');
+    const paymentDetailDate = document.querySelector('.paymentDetailDate');
+    const paymentResumeLink = document.getElementById("paymentResumeLink");
+    const paymentDetailWorkStatus = document.querySelector('.paymentDetailWorkStatus');
+    const paymentName = document.querySelector('.paymentName');
+    const paymentUPI = document.querySelector('.paymentUPI');
+    const paymentIFSC = document.querySelector('.paymentIFSC')
+
+    const selectPaymentName = document.querySelector('.selectPaymentName')
+    const selectPaymentUPI = document.querySelector('.selectPaymentUPI')
+    const selectPaymentIFSC = document.querySelector('.selectPaymentIFSC')
+    const selectPaymentHidden = document.getElementById('selectPaymentHidden')
+    const selectPaymentTotalAmount = document.getElementById('selectPaymentTotalAmount')
+    const paymentDetailsForm = document.querySelector(".selectPaymentModal-content")
+
+    const rejectButton = document.querySelector(".reject")
+    const selectButton = document.querySelector(".select")
+
+    const paymentMethod = document.getElementById('selectedPaymentMethod')
+
+    let currentJobApplicationId = null;
+
+    paymentDetailsForm.onsubmit = async e =>{
+        e.preventDefault()
+        
+        const inputs = paymentDetailsForm.getElementsByTagName('input')
+        let data={}
+        const formData = new FormData()
+
+        for (let i=0;i<=inputs.length;i++){
+            if(inputs.item(i)){
+                formData.append(inputs.item(i).name, inputs.item(i).value)
+                // data[inputs.item(i).name] = inputs.item(i).value
+            }
+        }
+        formData.append("selected_payment_method", paymentMethod.value)
+        // data["selected_payment_method"] = paymentMethod.value
+
+        const res = await fetch(`{% url 'make_payment' %}`, {
+            method: "POST",
+            credentials: 'same-origin',
+            body: formData
+        })
+
+        const response_data = await res.json()
+
+        if(response_data.StatusCode === 6000){   
+            selectPaymentModal.style.display = "none";
+            paymentSuccessModal.style.display = "block";
+        }
+    }
+
+
+    // updateButtons.forEach((button) => {
+    //     button.addEventListener("click", (event) => {
+    //         const jobApplicationId = button.dataset.id;
+    //         currentJobApplicationId = jobApplicationId
+    //         console.log(jobApplicationId)
+
+    //         const xhr = new XMLHttpRequest();
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4 && xhr.status == 200) {
+    //                 const jobApplicationsDetails = JSON.parse(xhr.responseText);
+            
+    //                 viewJobemployeeName.innerText = jobApplicationsDetails.name
+    //                 updateAbout.innerText = jobApplicationsDetails.about;
+    //                 updateAppliedDate.innerText = jobApplicationsDetails.applied_date
+    //                 updateModalContent.dataset.id = currentJobApplicationId;
+    //                 updateModal.style.display = "block";
+    //                 viewJobResumeLink.href = "{% url 'download_resume' %}?id=" + jobApplicationId;
+    //             }
+    //         };
+
+    //         xhr.open("GET", `/update-employer-job-details/?id=${jobApplicationId}`, true);
+    //         xhr.send();
+    //     });
+    // });
+
+    updateButtons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+
+            const applicationId = button.dataset.id;
+            console.log(applicationId)
+
+            updateEmployeeId.value = applicationId
+            selectPaymentHidden.value = applicationId
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    const jobApplicationsDetails = JSON.parse(xhr.responseText);
+            
+                    viewJobemployeeName.innerText = jobApplicationsDetails.name;
+                    updateAbout.innerText = jobApplicationsDetails.about;
+                    updateAppliedDate.innerText = jobApplicationsDetails.applied_date;
+                    updateJobResumeLink.href = "{% url 'download_resume' %}?id=" + applicationId;
+
+                    // viewJobDescription.innerText = jobApplicationsDetails.description;
+                    // viewJobDate.innerText = jobApplicationsDetails.applied_date
+                    // viewJobStatus.innerText = jobApplicationsDetails.status
+                    // viewJobResumeName.innerText = jobApplicationsDetails.resume;
+                    // viewJobResumeLink.href = "{% url 'download_resume' %}?id=" + applicationId;
+                    
+                    // while (requirementsList.firstChild) {
+                    //     requirementsList.removeChild(requirementsList.firstChild);
+                    // }
+
+                    // jobApplicationsDetails.requirements.forEach((requirement) => {
+                    //     const li = document.createElement("li");
+                    //     li.textContent = requirement;
+                    //     viewModal.querySelector(".pairField ul").appendChild(li);
+                    // });
+
+                    updateModal.style.display = "block";
+                }
+            };
+
+            xhr.open("GET", `/get-recent-application-update/?id=${applicationId}`, true);
+            xhr.send();
+        })
+    })
+        
+    updateClose.onclick = () => {
+        updateModal.style.display = "none";
+    }
+
+    updateReject.onclick = () => {
+
+        const applicationId = updateEmployeeId.value
+        console.log(applicationId)
+
+        const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.status === "success") {
+                        // Optionally, update the UI or perform any other actions
+                        console.log("Application status updated to rejected successfully");
+                    } else {
+                        // Handle error response
+                        console.error("Failed to update application status to rejected");
+                    }
+
+                    updateModal.style.display = "none";
+                }
+            };
+
+            xhr.open("GET", `/update-application-reject/?id=${applicationId}`, true);
+            xhr.send();
+    }
+
+    updateSelect.onclick = () => {
+        updateModal.style.display = "none";
+        
+        const applicationId = updateEmployeeId.value
+            console.log(applicationId)
+
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    const jobApplicationsDetails = JSON.parse(xhr.responseText);
+            
+                    paymentDetailName.innerText = jobApplicationsDetails.name;
+                    paymentDetailEmployer.innerText = jobApplicationsDetails.employer_name;
+                    paymentDetailAbout.innerText = jobApplicationsDetails.about;
+                    paymentDetailDate.innerText = jobApplicationsDetails.applied_date;
+                    paymentResumeLink.href = "{% url 'download_resume' %}?id=" + applicationId;
+                    paymentDetailWorkStatus.innerText = jobApplicationsDetails.work_status;
+                    paymentName.innerText = jobApplicationsDetails.payment_name;
+                    paymentUPI.innerText = jobApplicationsDetails.payment_upi;
+                    paymentIFSC.innerText = jobApplicationsDetails.payment_ifsc;
+                    selectPaymentName.innerText = jobApplicationsDetails.name;
+                    selectPaymentUPI.innerText = jobApplicationsDetails.payment_upi;
+                    selectPaymentIFSC.innerText = jobApplicationsDetails.payment_ifsc;
+                    selectPaymentTotalAmount.innerText = jobApplicationsDetails.total_amount
+                    
+                    paymentDetailsModal.style.display = "block";
+                    if (selectPaymentName.innerText == "No data found" || selectPaymentUPI.innerText == "No data found" || selectPaymentIFSC.innerText == "No data found"){
+                        makePayment.style.display = "none";
+                    }
+                    else {
+                        makePayment.style.display = "block";   
+                    }
+                }
+            };
+
+            xhr.open("GET", `/get-payment-details/?id=${applicationId}`, true);
+            xhr.send();
+    }
+
+    // selectedEmployeeClose.onclick = () => {
+    //     selectedEmployeeModal.style.display = "block";
+    // }
+
+    paymentDetailClose.onclick = () => {
+        paymentDetailsModal.style.display = "none"
+    }
+
+    makePayment.onclick = () => {
+        
+        paymentDetailsModal.style.display = "none"
+        selectPaymentModal.style.display = "block"
+
+    }
+
+    document.querySelectorAll('.methods li').forEach((item) => {
+        item.addEventListener('click', () => {
+
+            document.querySelectorAll('.methods li').forEach(function(el) {
+                el.classList.remove('active');
+            });
+            item.classList.add('active');
+
+            const selectedMethod = item.getAttribute('data-method');
+
+            document.getElementById('selectedPaymentMethod').value = selectedMethod;
+        });
+    });
+
+    selectPaymentClose.onclick = () => {
+        selectPaymentModal.style.display = "none"
+    }
+
+    paymentSuccessClose.onclick = () => {
+        paymentSuccessModal.style.display = "none"
+    }
+
+    const logoutModal = document.getElementById("logoutModal");
+    const logoutButton = document.getElementById("logoutButton");
+    const logoutSave = document.getElementById("logoutsave");
+    const logoutCancel = document.getElementById("logoutcancel");
+
+    logoutButton.onclick = () => {
+        logoutModal.style.display = "block";
+    }
+
+    logoutCancel.onclick = () => {
+        logoutModal.style.display = "none";
+    };
+
+    logoutSave.onclick = () => {
+        logoutModal.style.display = "none";
+        window.location.href = "/";
+    };
+</script>
+{% endblock %}

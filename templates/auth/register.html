@@ -1,0 +1,117 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section id="register">
+    <div class="left">
+        <img src="../../static/images/background authentication.png" alt="Authentication background">
+    </div>
+    <div class="right">
+        <div class="container">
+            <div class="logoContainer">
+                <div class="logo">
+                    <img src="{% static '/images/logo dark.svg' %}" alt="Dark logo">
+                </div>
+            </div>
+            <form action="{% url 'register' %}" method="POST" class="signIn" id="registerForm" >
+                {% csrf_token %}
+                <p class="welcome">Welcome!</p>
+                <p class="title">Register new account</p>
+                <div class="field userRoleSelect">
+                    <label for="user_role">Register as</label>
+                    <!-- <input
+                        type="tel"
+                        placeholder="Register as"
+                        name="name"
+                        required
+                    /> -->
+                    <select name="role" id="user_role" class="userRoleList" aria-placeholder="" required>
+                        <option value="" class="placeholder">Select role</option>
+                        <option value="employer">Employer</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input
+                        type="tel"
+                        placeholder="Enter name"
+                        name="name"
+                        required
+                    />
+                </div>
+                <div class="twoField">
+                    <div class="field">
+                        <label for="number">Phone number</label>
+                        <input
+                            type="tel"
+                            placeholder="Enter phone number"
+                            name="number"
+                            required
+                        />
+                    </div>
+                    <div class="field">
+                        <label for="email">Mail - ID</label>
+                        <input
+                            type="email"
+                            placeholder="Enter mail id"
+                            name="email"
+                            required
+                        />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="designation">Designation</label>
+                    <input
+                        type="text"
+                        placeholder="Enter designation"
+                        name="designation"
+                        required
+                    />
+                </div>
+                <div class="twoField">
+                    <div class="field recheck">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            placeholder="Enter password"
+                            name="password"
+                            id="password"
+                            required
+                        />
+                        <p class="passwordError">Password do not match</p>
+                    </div>
+                    <div class="field recheck">
+                        <label for="verifiy-password">Re - Enter password</label>
+                        <input
+                            type="password"
+                            placeholder="Enter password"
+                            id="verify-password"
+                            name="verifiy-password"
+                            required
+                        />
+                        <p class="passwordError">Password do not match</p>
+                    </div>
+                </div>
+                <button class="registerButton" type="submit" id="loginButton">Register</button>
+                <div class="account"><p >Already have an account ?</p><a href="{% url 'login' %}" class="loginLink">Login</a></div>
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const registerForm = document.getElementById("registerForm");
+        const passwordError = document.querySelectorAll(".passwordError");
+        
+        registerForm.addEventListener("submit", function(event) {
+            const password = document.getElementById("password").value;
+            const verifyPassword = document.getElementById("verify-password").value;
+            
+            if (password !== verifyPassword) {
+                event.preventDefault();
+                passwordError.forEach(errorMessage => {
+                    errorMessage.style.display = "block";
+                })
+            }
+        });
+    });
+</script>
+{% endblock %}

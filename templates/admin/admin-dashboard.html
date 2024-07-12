@@ -1,0 +1,595 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section id="adminDashboard">
+    <div class="left">
+        <div class="leftLogo">
+            <img src="{% static '/images/logo white.svg' %}" alt="logo" />
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'admin_dashboard' %}" class="active">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/dashboard.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'admin_job' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/job.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Job
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'admin_application' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/application.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Application
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'admin_meeting' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/meeting.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Meetings
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'admin_work' %}">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/work-icon.svg' %}"
+                                alt="Meeting"
+                            />
+                        </div>
+                        Works
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li id="logoutButton">
+                    <a href="#">
+                        <div class="navIcon">
+                            <img
+                                src="{% static '/images/logout.svg' %}"
+                                alt="Logout"
+                            />
+                        </div>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="right">
+        <div class="top">
+            <div class="userDetails">
+                <div class="userImage">
+                    {% if current_user.profile.profile_image %}
+                        <img
+                            src="{{ current_user.profile.profile_image.url }}"
+                            alt="user Image"
+                        />
+                    {% else %}
+                        <img
+                            src="{% static '/images/profile picture.png' %}"
+                            alt="Default user Image"
+                        />
+                    {% endif %}
+                </div>
+                <p class="userName">{{ current_user.profile.name }}</p>
+                <div class="arrow">
+                    <img
+                        src="{% static '/images/down arrow.svg' %}"
+                        alt="Down arrow"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h4>Dashboard</h4>
+            <div class="cards">
+                <div class="card">
+                    <div class="cardLeft">
+                        <div class="cardIcon">
+                            <img
+                                src="{% static '/images/posted-job.svg' %}"
+                                alt="Posted jobs icon"
+                            />
+                        </div>
+                    </div>
+                    <div class="cardRight">
+                        <p class="cardTitle">Total jobs posts</p>
+                        <p class="count">{{ job_count }}</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardLeft">
+                        <div class="cardIcon">
+                            <img
+                                src="{% static '/images/application-count-icon.svg' %}"
+                                alt="Posted jobs icon"
+                            />
+                        </div>
+                    </div>
+                    <div class="cardRight">
+                        <p class="cardTitle">Total applications received</p>
+                        <p class="count">{{ applications_count }}</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardLeft">
+                        <div class="cardIcon">
+                            <img
+                                src="{% static '/images/pending-request-icon.svg' %}"
+                                alt="Posted jobs icon"
+                            />
+                        </div>
+                    </div>
+                    <div class="cardRight">
+                        <p class="cardTitle">Total pending requests</p>
+                        <p class="count">{{ pending_requests_count }}</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardLeft">
+                        <div class="cardIcon">
+                            <img
+                                src="{% static '/images/hired-job-count-icon.svg' %}"
+                                alt="Posted jobs icon"
+                            />
+                        </div>
+                    </div>
+                    <div class="cardRight">
+                        <p class="cardTitle">Total hired jobs</p>
+                        <p class="count">{{ total_hired_count }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="recentApplications">
+                <h5>Recent applied jobs </h5>
+                <a  href="{% url 'admin_application' %}" class="viewAll">
+                    <p>View all</p>
+                    <div class="rightArrow">
+                        <img
+                            src="../../static/images/view-right-arrow.svg"
+                            alt=""
+                        />
+                    </div>
+                </a>
+            </div>
+            <div class="recentAppliedJobsTableContainer">
+                <table class="tableStyle ">
+                    <thead>
+                        <th>Sl no</th>
+                        <th>Name</th>
+                        <th>Applied position</th>
+                        <th>Applied date</th>
+                    </thead>
+                    <tbody>
+                        {% for application in applications %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ application.profile }}</td>
+                            <td>{{ application.job }}</td>
+                            <td>{{ application.applied_date|date:'d/m/y' }}</td>
+                        </tr>
+                        {% endfor %}
+            
+                    </tbody>
+                </table>
+            </div>
+            <div class="recentApplications">
+                <h5>Recently posted jobs</h5>
+                <a  href="{% url 'admin_job' %}" class="viewAll">
+                    <p>View all</p>
+                    <div class="rightArrow">
+                        <img
+                            src="../../static/images/view-right-arrow.svg"
+                            alt=""
+                        />
+                    </div>
+                </a>
+            </div>
+            <div class="recentPostedTableContainer">
+                <table class="tableStyle">
+                    <thead>
+                        <th>Sl no</th>
+                        <th>Employer name</th>
+                        <th>job position</th>
+                        <th>opening date</th>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ job.employer }}</td>
+                            <td>{{ job.title }}</td>
+                            <td>{{ job.opening_date|date:'d/m/y' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="detailModal" class="detailModal">
+    <form class="detailModal-content">
+        <div class="detailModalTitle employeeDetailModalTitle">
+            <h4>Details</h4>
+        </div>
+        <div class="pairField">
+            <label for="job-title">Job tittle</label>
+            <p class="jobTitle"></p>
+        </div>
+        <div class="pairField">
+            <label for="description">Description</label>
+            <p class="jobDescription">
+            </p>
+        </div>
+        <div class="pairField">
+            <label for="name">Requirement</label>
+            <ul class="list">
+                <li>
+                </li>
+            </ul>
+        </div>
+        <div class="taskButtons viewEmployeeDetailsButtons">
+            <button class="close" id="closeDetailModal" type="button">Close</button>
+            <button class="apply" id="applyDetailModal" data-id="">Apply now</button>
+        </div>
+    </form>
+</div>
+<div id="updateModal" class="updateModal">
+    <form class="updateModal-content">
+        {% csrf_token %}
+        <div class="closeIcon" id="updateClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Details</h4>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="viewJobEmployeeName">Safwan</p>
+        </div>
+        <div class="pairField">
+            <label for="about">About</label>
+            <p class="updateAbout">
+                Passionate Senior UX/UI Designer with a proven track record of
+                transforming complex user needs into elegant, intuitive
+                interfaces. Bringing over a decade of experience, I specialize
+                in creating seamless and visually compelling digital experiences
+                that prioritize user satisfaction. Adept at combining creativity
+                with strategic thinking to elevate product designs and drive
+                user engagement.
+            </p>
+        </div>
+        <div class="pairField">
+            <label for="name">Applied date</label>
+            <p class="updateAppliedDate">19 / 12 / 2023</p>
+        </div>
+        <div class="pairField">
+            <label for="resume">Resume</label>
+            <div class="pdf">
+                <p>Resume.pdf</p>
+                <div class="downloadIcon">
+                    <a href="" id="viewJobResumeLink">
+                        <img src="../../static/images/download.svg" alt="Download Icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <input id="employeeApplicationId" name="applicationId" hidden>
+        <div class="taskButtons">
+            <button class="reject" type="button">Reject</button>
+            <button class="select" type="button">Select</button>
+        </div>
+    </form>
+</div>
+<div id="paymentDetailsModal" class="paymentDetailsModal">
+    <form class="paymentDetailsModal-content">
+        {% csrf_token %}
+        <div class="closeIcon" id="paymentDetailClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Details</h4>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="viewJobEmployeeName">Safwan</p>
+        </div>
+        <div class="pairField">
+            <label for="about">About</label>
+            <p class="updateAbout">
+                Passionate Senior UX/UI Designer with a proven track record of
+                transforming complex user needs into elegant, intuitive
+                interfaces. Bringing over a decade of experience, I specialize
+                in creating seamless and visually compelling digital experiences
+                that prioritize user satisfaction. Adept at combining creativity
+                with strategic thinking to elevate product designs and drive
+                user engagement.
+            </p>
+        </div>
+        <div class="pairField">
+            <label for="name">Applied date</label>
+            <p class="updateAppliedDate">19 / 12 / 2023</p>
+        </div>
+        <div class="pairField">
+            <label for="resume">Resume</label>
+            <div class="pdf">
+                <p>Resume.pdf</p>
+                <div class="downloadIcon">
+                    <a href="" id="viewJobResumeLink">
+                        <img src="../../static/images/download.svg" alt="Download Icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pairField">
+            <label for="name">Work status</label>
+            <p class="updateAppliedDate">In progress</p>
+        </div>
+        <h4>Payment details</h4>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="updateAppliedDate">Safwan T P</p>
+        </div>
+        <div class="pairField">
+            <label for="name">UPI number</label>
+            <p class="updateAppliedDate">134234567</p>
+        </div>
+        <div class="pairField">
+            <label for="name">IFSC number</label>
+            <p class="updateAppliedDate">G3456789</p>
+        </div>
+        <input id="employeeApplicationId" name="applicationId" hidden>
+        <div class="taskButtons">
+            <button class="save" id="makePayment" type="button">Make payment</button>
+        </div>
+    </form>
+</div>
+
+<div id="selectPaymentModal" class="selectPaymentModal">
+    <form class="selectPaymentModal-content">
+        {% csrf_token %}
+        <div class="closeIcon" id="selectPaymentClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <h4>Select payment method</h4>
+        <p class="miniTitle">Payment method</p>
+        <ul class="methods">
+            <li><div class="circle"><span></span></div>gpay</li>
+            <li><div class="circle"><span class="active"></span></div>paypal</li>
+            <li><div class="circle"><span></span></div>credit card</li>
+        </ul>
+        <p class="miniTitle">Payment details</p>
+        <div class="pairField">
+            <label for="name">Name</label>
+            <p class="updateAppliedDate">Safwan T P</p>
+        </div>
+        <div class="pairField">
+            <label for="name">UPI number</label>
+            <p class="updateAppliedDate">134234567</p>
+        </div>
+        <div class="pairField">
+            <label for="name">IFSC number</label>
+            <p class="updateAppliedDate">G3456789</p>
+        </div>
+        <div class="pairField amountPairField">
+            <label for="name">Enter amount</label>
+            <input type="number">
+        </div>
+        <div class="pairField" >
+            <label for="name" class="total">Total amount</label>
+            <p class="total">: $12000</p>
+        </div>
+        <input id="employeeApplicationId" name="applicationId" hidden>
+        <div class="taskButtons">
+            <button class="paymentSave" id="saveButton" type="button">save</button>
+        </div>
+    </form>
+</div>
+
+<div id="paymentSuccessModal" class="paymentSuccessModal">
+    <form class="paymentSuccessModal-content">
+        {% csrf_token %}
+        <div class="closeIcon" id="paymentSuccessClose">
+            <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
+        </div>
+        <div class="tickMark">
+            <img src="{% static '/images/green-white-tick.png' %}" alt="Green white tick">
+        </div>
+        <h4>Payment Successfull</h4>
+        <p>Your payment has been successfully completed</p>
+    </form>
+</div>
+
+<div id="logoutModal" class="logoutModal">
+    <form class="logoutModal-content" action="{% url 'logout_user' %}" method="POST">
+        {% csrf_token %}
+        <h4>Logout</h4>
+        <p>Are you sure want to logout ?</p>
+        <div class="createButtons">
+            <button type="button" class="logoutCancel" id="logoutcancel">cancel</button>
+            <button class="logoutConfirm" id="logoutsave">Logout</button>
+        </div>
+    </form>
+</div>
+<script>
+    const updateButtons = document.querySelectorAll(".updateButton");
+    const updateModal = document.getElementById("updateModal");
+    const updateClose = document.getElementById("updateClose");
+    const updateModalContent = document.querySelector(".updateModal-content");
+
+    const paymentDetailsModal = document.getElementById("paymentDetailsModal");
+    const paymentDetailClose =document.getElementById("paymentDetailClose");
+    const makePayment = document.getElementById("makePayment")
+
+    const selectPaymentModal = document.getElementById("selectPaymentModal")
+    const selectPaymentClose = document.getElementById("selectPaymentClose")
+
+    const saveButton = document.getElementById("saveButton")
+    const paymentSuccessModal = document.getElementById("paymentSuccessModal")
+    const paymentSuccessClose = document.getElementById("paymentSuccessClose")
+
+    const viewButtons = document.querySelectorAll("viewButton")
+
+    
+    // const viewJobTitle = document.querySelector(".viewJobTitle")
+    const viewJobemployeeName = document.querySelector(".viewJobEmployeeName")
+    const updateAbout = document.querySelector(".updateAbout")
+    const updateAppliedDate = document.querySelector(".updateAppliedDate")
+    const viewJobResumeName = document.getElementById('viewJobResumeName');
+    const viewJobResumeLink = document.getElementById('viewJobResumeLink');
+    const rejectButton = document.querySelector(".reject")
+    const selectButton = document.querySelector(".select")
+
+    let currentJobApplicationId = null;
+
+    // updateButtons.forEach((button) => {
+    //     button.addEventListener("click", (event) => {
+    //         // Get the job ID associated with the clicked button
+    //         const jobApplicationId = button.dataset.id;
+    //         currentJobApplicationId = jobApplicationId
+    //         console.log(jobApplicationId)
+
+    //         const xhr = new XMLHttpRequest();
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4 && xhr.status == 200) {
+    //                 const jobApplicationsDetails = JSON.parse(xhr.responseText);
+            
+    //                 viewJobemployeeName.innerText = jobApplicationsDetails.name
+    //                 updateAbout.innerText = jobApplicationsDetails.about;
+    //                 updateAppliedDate.innerText = jobApplicationsDetails.applied_date
+    //                 updateModalContent.dataset.id = currentJobApplicationId;
+    //                 updateModal.style.display = "block";
+    //                 viewJobResumeLink.href = "{% url 'download_resume' %}?id=" + jobApplicationId;
+    //             }
+    //         };
+
+    //         xhr.open("GET", `/update-employer-job-details/?id=${jobApplicationId}`, true);
+    //         xhr.send();
+    //     });
+    // });
+
+
+    updateClose.onclick = () => {
+        updateModal.style.display = "none";
+    }
+
+    updateButtons.forEach((button)=> {
+        button.addEventListener("click", (e)=> {
+            updateModal.style.display = "block";
+        })
+    })
+
+    selectButton.onclick = () => {
+        updateModal.style.display = "none";
+        paymentDetailsModal.style.display = "block";
+    }
+
+    updateClose.onclick = () => {
+        updateModal.style.display = "none";
+    }
+    
+    paymentDetailClose.onclick = () => {
+        paymentDetailsModal.style.display = "none"
+    }
+
+    selectPaymentClose.onclick = () => {
+        selectPaymentModal.style.display = "none"
+    }
+
+    makePayment.onclick = () => {
+        paymentDetailsModal.style.display = "none"
+        selectPaymentModal.style.display = "block"
+    }
+
+    saveButton.onclick = () => {
+        selectPaymentModal.style.display = "none"
+        paymentSuccessModal.style.display = "block"
+    }
+
+    paymentSuccessClose.onclick = () => {
+        paymentSuccessModal.style.display = "none"
+    }
+
+    viewButtons.forEach((eachButton)=> {
+        eachButton.addEventListener("click", (e) => {
+            updateModal.style.display = "block";
+        })
+    })
+    
+
+    selectButton.addEventListener("click", (event) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.status === "success") {
+                // Optionally, update the UI or perform any other actions
+                console.log("Application status updated successfully");
+            } else {
+                // Handle error response
+                console.error("Failed to update application status");
+            }
+        }
+    };
+
+    xhr.open("GET", `/update-application-status/?id=${currentJobApplicationId}`, true);
+    xhr.send();
+    });
+
+    rejectButton.addEventListener("click", (event) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.status === "success") {
+                // Optionally, update the UI or perform any other actions
+                console.log("Application status updated to rejected successfully");
+            } else {
+                // Handle error response
+                console.error("Failed to update application status to rejected");
+            }
+        }
+    };
+
+    xhr.open("GET", `/update-application-status/?id=${currentJobApplicationId}&status=rejected`, true);
+    xhr.send();
+    });
+
+    const logoutModal = document.getElementById("logoutModal");
+    const logoutButton = document.getElementById("logoutButton");
+    const logoutSave = document.getElementById("logoutsave");
+    const logoutCancel = document.getElementById("logoutcancel");
+
+    logoutButton.onclick = () => {
+        logoutModal.style.display = "block";
+    }
+
+    logoutCancel.onclick = () => {
+        logoutModal.style.display = "none";
+    };
+
+    logoutSave.onclick = () => {
+        logoutModal.style.display = "none";
+        window.location.href = "/";
+    };
+</script>
+{% endblock %}
