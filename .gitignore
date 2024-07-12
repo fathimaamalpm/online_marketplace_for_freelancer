@@ -16,6 +16,9 @@ venv
 htmlcov
 
 media/**
+
+
+
 !media/static
 
 .vscode
