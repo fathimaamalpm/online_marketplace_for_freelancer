@@ -1596,7 +1596,7 @@ button {
     border: 1px solid #e4e4e4;
     width: 50%;
     border-radius: 18px;
-    max-height: 650px;
+    /* height: 650px; */
     position: relative;
     /* overflow-y: scroll; */
 }
