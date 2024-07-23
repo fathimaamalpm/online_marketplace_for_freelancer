@@ -1,4 +1,13 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
+<style>
+    .detail-content{
+        max-height:550px;
+        overflow-y:scroll
+    }
+
+</style>
+
+
 <section id="employerJob">
     <div class="left">
         <div class="leftLogo">
@@ -190,6 +199,7 @@
 
 <div id="detailModal" class="detailModal">
     <form class="detailModal-content">
+     <div class="detail-content">
         <div class="detailModalTitile">
             <h4>Details</h4>
             <div class="dropDown">
@@ -265,6 +275,7 @@
         <div class="taskButtons">
             <button class="close" id="closeDetailModal">Close</button>
         </div>
+       </div>
     </form>
 </div>
 

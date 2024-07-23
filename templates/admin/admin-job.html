@@ -1,509 +1,544 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
+
+<style>
+    .detail-content{
+        max-height:550px;
+        overflow-y:scroll
+    }
+
+</style>
+
+
 <section id="adminJob">
-    <div class="left">
-        <div class="leftLogo">
-            <img src="{% static '/images/logo white.svg' %}" alt="logo" />
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="{% url 'admin_dashboard' %}">
-                        <div class="navIcon">
-                            <img
-                                src="{% static '/images/dashboard.svg' %}"
-                                alt="Logout"
-                            />
-                        </div>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'admin_job' %}" class="active">
-                        <div class="navIcon">
-                            <img
-                                src="{% static '/images/job.svg' %}"
-                                alt="Logout"
-                            />
-                        </div>
-                        Job
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'admin_application' %}">
-                        <div class="navIcon">
-                            <img
-                                src="{% static '/images/application.svg' %}"
-                                alt="Logout"
-                            />
-                        </div>
-                        Application
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'admin_meeting' %}">
-                        <div class="navIcon">
-                            <img
-                                src="{% static '/images/meeting.svg' %}"
-                                alt="Meeting"
-                            />
-                        </div>
-                        Meetings
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'admin_work' %}">
-                        <div class="navIcon">
-                            <img
-                                src="{% static '/images/work-icon.svg' %}"
-                                alt="Meeting"
-                            />
-                        </div>
-                        Works
-                    </a>
-                </li>
-            </ul>
-            <ul>
-                <li id="logoutButton">
-                    <a href="#">
-                        <div class="navIcon">
-                            <img
-                                src="{% static '/images/logout.svg' %}"
-                                alt="Logout"
-                            />
-                        </div>
-                        Logout
-                    </a>
-                </li>
-            </ul>
-        </nav>
+  <div class="left">
+    <div class="leftLogo">
+      <img src="{% static '/images/logo white.svg' %}" alt="logo" />
     </div>
-    <div class="right">
-        <div class="top">
-            <div class="userDetails">
-                <div class="userImage">
-                    {% if current_user.profile.profile_image %}
-                        <img
-                            src="{{ current_user.profile.profile_image.url }}"
-                            alt="user Image"
-                        />
-                    {% else %}
-                        <img
-                            src="{% static '/images/profile picture.png' %}"
-                            alt="Default user Image"
-                        />
-                    {% endif %}
-                </div>
-                <p class="userName">{{ current_user.profile.name }}</p>
-                <div class="arrow">
-                    <img
-                        src="{% static '/images/down arrow.svg' %}"
-                        alt="Down arrow"
-                    />
-                </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'admin_dashboard' %}">
+            <div class="navIcon">
+              <img src="{% static '/images/dashboard.svg' %}" alt="Logout" />
             </div>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_job' %}" class="active">
+            <div class="navIcon">
+              <img src="{% static '/images/job.svg' %}" alt="Logout" />
+            </div>
+            Job
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_application' %}">
+            <div class="navIcon">
+              <img src="{% static '/images/application.svg' %}" alt="Logout" />
+            </div>
+            Application
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_meeting' %}">
+            <div class="navIcon">
+              <img src="{% static '/images/meeting.svg' %}" alt="Meeting" />
+            </div>
+            Meetings
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'admin_work' %}">
+            <div class="navIcon">
+              <img src="{% static '/images/work-icon.svg' %}" alt="Meeting" />
+            </div>
+            Works
+          </a>
+        </li>
+      </ul>
+      <ul>
+        <li id="logoutButton">
+          <a href="#">
+            <div class="navIcon">
+              <img src="{% static '/images/logout.svg' %}" alt="Logout" />
+            </div>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="right">
+    <div class="top">
+      <div class="userDetails">
+        <div class="userImage">
+          {% if current_user.profile.profile_image %}
+          <img
+            src="{{ current_user.profile.profile_image.url }}"
+            alt="user Image"
+          />
+          {% else %}
+          <img
+            src="{% static '/images/profile picture.png' %}"
+            alt="Default user Image"
+          />
+          {% endif %}
         </div>
-        <div class="content">
-            <div class="contentTop">
-                <h4>Job</h4>
-            </div>
-            <div class="jobCards" id="jobCardsContainer">
-                {% for job in jobs %}
-                <div class="jobCard">
-                    <div class="jobTitleTop">
-                        <p class="jobTitle">{{ job.title }}</p>
-                    </div>
-                    <div class="fieldPair">
-                        <label for="openeing">Opening date</label>
-                        <p class="openingDate">{{ job.opening_date|date:"d/m/Y" }}</p>
-                    </div>
-                    <div class="fieldPair">
-                        <label for="openeing">Received application</label>
-                        <p class="recieved">{{ job.received_count }}</p>
-                    </div>
-                    <div class="fieldPair employerPair">
-                        <label for="opening">Employer name</label>
-                        <p class="employerName">{{ job.employer.name }}</p>
-                    </div>
-                    <div class="view" data-id="{{ job.id }}">
-                        <p>view details</p>
-                        <div class="viewArrow">
-                            <img
-                                src="../../static/images/job-card-view-arrow.svg"
-                                alt="View arrow"
-                            />
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            <div class="paginationContainer">
-                <div class="text">Showing jobs</div>
-                <div class="paginationNav">
-                    <button id="prevBtn">&lt;</button> <!-- Previous button -->
-                    <div id="pagination" class="pagination"></div>
-                    <button id="nextBtn">&gt;</button> <!-- Next button -->
-                </div>
-            </div>
+        <p class="userName">{{ current_user.profile.name }}</p>
+        <div class="arrow">
+          <img src="{% static '/images/down arrow.svg' %}" alt="Down arrow" />
         </div>
+      </div>
     </div>
+    <div class="content">
+      <div class="contentTop">
+        <h4>Job</h4>
+      </div>
+      <div class="jobCards" id="jobCardsContainer">
+        {% for job in jobs %}
+        <div class="jobCard">
+          <div class="jobTitleTop">
+            <p class="jobTitle">{{ job.title }}</p>
+          </div>
+          <div class="fieldPair">
+            <label for="openeing">Opening date</label>
+            <p class="openingDate">{{ job.opening_date|date:"d/m/Y" }}</p>
+          </div>
+          <div class="fieldPair">
+            <label for="openeing">Received application</label>
+            <p class="recieved">{{ job.received_count }}</p>
+          </div>
+          <div class="fieldPair employerPair">
+            <label for="opening">Employer name</label>
+            <p class="employerName">{{ job.employer.name }}</p>
+          </div>
+          <div class="view" data-id="{{ job.id }}">
+            <p>view details</p>
+            <div class="viewArrow">
+              <img
+                src="../../static/images/job-card-view-arrow.svg"
+                alt="View arrow"
+              />
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="paginationContainer">
+        <div class="text">Showing jobs</div>
+        <div class="paginationNav">
+          <button id="prevBtn">&lt;</button>
+          <!-- Previous button -->
+          <div id="pagination" class="pagination"></div>
+          <button id="nextBtn">&gt;</button>
+          <!-- Next button -->
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <div id="createModal" class="createModal">
-    <form class="createModal-content" action="{% url 'create_job' %}" method="POST">
-        {% csrf_token %}
-        <h4>Create opening</h4>
-        <div class="pairField">
-            <label for="name">Job tittle</label>
-            <input type="job-title" placeholder="Enter job title" name="title" required/>
-        </div>
-        <div class="pairField">
-            <label for="about">Description</label>
-            <textarea rows="3" placeholder="Enter job description" name="description" required></textarea>
-        </div>
-        <div class="pairField">
-            <label for="name">Requirement</label>
-            <textarea rows="3" placeholder="Enter job requirement" name="requirements" required></textarea>
-        </div>
-        <div class="pairField">
-            <label for="name">Number of openings</label>
-            <input type="integer" placeholder="Enter number of openeings" name="openings" required/>
-        </div>
-        <div class="pairField">
-            <label for="name">Opening Date</label>
-            <input type="" placeholder="YYYY-MM-DD" name="opening-date" required/>
-        </div>
-        <div class="pairField">
-            <label for="name">Closing Date</label>
-            <input type="closing-date" placeholder="YYYY-MM-DD" name="closing-date" required/>
-        </div>
-        <div class="taskButtons">
-            <button class="cancel" id="closeCreateModal">Cancel</button>
-            <button class="create" id="createModalButton">Create</button>
-        </div>
-    </form>
+  <form
+    class="createModal-content"
+    action="{% url 'create_job' %}"
+    method="POST"
+  >
+    {% csrf_token %}
+    <h4>Create opening</h4>
+    <div class="pairField">
+      <label for="name">Job tittle</label>
+      <input
+        type="job-title"
+        placeholder="Enter job title"
+        name="title"
+        required
+      />
+    </div>
+    <div class="pairField">
+      <label for="about">Description</label>
+      <textarea
+        rows="3"
+        placeholder="Enter job description"
+        name="description"
+        required
+      ></textarea>
+    </div>
+    <div class="pairField">
+      <label for="name">Requirement</label>
+      <textarea
+        rows="3"
+        placeholder="Enter job requirement"
+        name="requirements"
+        required
+      ></textarea>
+    </div>
+    <div class="pairField">
+      <label for="name">Number of openings</label>
+      <input
+        type="integer"
+        placeholder="Enter number of openeings"
+        name="openings"
+        required
+      />
+    </div>
+    <div class="pairField">
+      <label for="name">Opening Date</label>
+      <input type="" placeholder="YYYY-MM-DD" name="opening-date" required />
+    </div>
+    <div class="pairField">
+      <label for="name">Closing Date</label>
+      <input
+        type="closing-date"
+        placeholder="YYYY-MM-DD"
+        name="closing-date"
+        required
+      />
+    </div>
+    <div class="taskButtons">
+      <button class="cancel" id="closeCreateModal">Cancel</button>
+      <button class="create" id="createModalButton">Create</button>
+    </div>
+  </form>
 </div>
 
 <div id="detailModal" class="detailModal">
-    <form class="detailModal-content">
-        <div class="detailModalTitile">
-            <h4>Details</h4>
-            <div class="dropDown">
-                <div class="threeDots" id="options">
-                    <img
-                        src="{% static '/images/three-dots.svg' %}"
-                        alt="Three dots"
-                    />
-                </div>
-                <div class="dropDownList" id="dropDownList">
-                    <div class="options" id="editDetailButton">
-                        <div class="optionIcon">
-                            <img
-                                src="{% static '/images/edit.svg' %}"
-                                alt="Edit"
-                            />
-                        </div>
-                        <p>Edit</p>
-                    </div>
-                    <div class="options" id="deleteButton">
-                        <div class="optionIcon">
-                            <img
-                                src="{% static '/images/delete.svg' %}"
-                                alt="Edit"
-                            />
-                        </div>
-                        <p>Delete</p>
-                    </div>
-                </div>
+  <form class="detailModal-content">
+    <div class="detail-content">
+      <div class="detailModalTitile">
+        <h4>Details</h4>
+        <div class="dropDown">
+          <div class="threeDots" id="options">
+            <img src="{% static '/images/three-dots.svg' %}" alt="Three dots" />
+          </div>
+          <div class="dropDownList" id="dropDownList">
+            <div class="options" id="editDetailButton">
+              <div class="optionIcon">
+                <img src="{% static '/images/edit.svg' %}" alt="Edit" />
+              </div>
+              <p>Edit</p>
             </div>
-        </div>
-        <div class="pairField">
-            <label for="job-title">Employeer name</label>
-            <p  class="jobTitle">Swathi</p>
-        </div>
-        <div class="pairField">
-            <label for="job-title">Job tittle</label>
-            <p  class="jobTitle">UX / UI Designer</p>
-        </div>
-        <div class="pairField">
-            <label for="description" >Description</label>
-            <p class="jobDescription">
-                We are seeking a creative and detail-oriented UI/UX Designer
-                with a specialization in website design to join our team. The
-                ideal candidate will have a strong portfolio showcasing
-                innovative design solutions and a deep understanding of user
-                experience principles as they relate to web design.
-            </p>
-        </div>
-        <div class="pairField">
-            <label for="name">Requirement</label>
-            <ul class="list">
-                <li>
-                    Bachelor's degree in Design, Computer Science, or relevant
-                    field.
-                </li>
-            </ul>
-        </div>
-        <div class="pairField">
-            <label for="resume">Applications overview</label>
-            <div class="countContainer">
-                <div class="totalRecieved">
-                    <p class="countTitle">Total received</p>
-                    <p class="receivedNumber number">40</p>
-                </div>
-                <div class="shortlisted">
-                    <p class="countTitle">Shortlisted</p>
-                    <p class="shortListedNumber number">05</p>
-                </div>
-                <div class="rejected">
-                    <p class="countTitle">Rejected</p>
-                    <p class="rejectedNumber number">35</p>
-                </div>
+            <div class="options" id="deleteButton">
+              <div class="optionIcon">
+                <img src="{% static '/images/delete.svg' %}" alt="Edit" />
+              </div>
+              <p>Delete</p>
             </div>
+          </div>
         </div>
-        <div class="taskButtons">
-            <button class="close" id="closeDetailModal" type="button">Close</button>
+      </div>
+      <div class="pairField">
+        <label for="job-title">Employeer name</label>
+        <p class="jobTitle">Swathi</p>
+      </div>
+      <div class="pairField">
+        <label for="job-title">Job tittle</label>
+        <p class="jobTitle">UX / UI Designer</p>
+      </div>
+      <div class="pairField">
+        <label for="description">Description</label>
+        <p class="jobDescription">
+          We are seeking a creative and detail-oriented UI/UX Designer with a
+          specialization in website design to join our team. The ideal candidate
+          will have a strong portfolio showcasing innovative design solutions
+          and a deep understanding of user experience principles as they relate
+          to web design.
+        </p>
+      </div>
+      <div class="pairField">
+        <label for="name">Requirement</label>
+        <ul class="list">
+          <li>
+            Bachelor's degree in Design, Computer Science, or relevant field.
+          </li>
+        </ul>
+      </div>
+      <div class="pairField">
+        <label for="resume">Applications overview</label>
+        <div class="countContainer">
+          <div class="totalRecieved">
+            <p class="countTitle">Total received</p>
+            <p class="receivedNumber number">40</p>
+          </div>
+          <div class="shortlisted">
+            <p class="countTitle">Shortlisted</p>
+            <p class="shortListedNumber number">05</p>
+          </div>
+          <div class="rejected">
+            <p class="countTitle">Rejected</p>
+            <p class="rejectedNumber number">35</p>
+          </div>
         </div>
-    </form>
+      </div>
+      <div class="taskButtons">
+        <button class="close" id="closeDetailModal" type="button">Close</button>
+      </div>
+    </div>
+  </form>
 </div>
 
 <div id="editModal" class="editModal">
-    <form class="editModal-content" action="{% url 'edit_admin_project' %}" method="POST">
-        {% csrf_token %}
-        <h4>Edit opening</h4>
-        <div class="pairField">
-            <label for="name">Job tittle</label>
-            <input type="job-title" placeholder="Enter job title" class="editDetailJobTitle" name="title"/>
-        </div>
-        <div class="pairField">
-            <label for="about">Description</label>
-            <textarea rows="3" placeholder="Enter job description" name="description" class="editJobDescription"></textarea>
-        </div>
-        <div class="pairField">
-            <label for="name">Requirement</label>
-            <textarea rows="3" placeholder="Enter job requirement" name="requirements" class="editJobRequirements"></textarea>
-        </div>
-        <input type="text" id="jobIdInput" name="jobApplicationId" hidden >
-        <div class="taskButtons">
-            <button class="cancel" id="closeEditModal" type="button">Cancel</button>
-            <button class="create" id="createModalButton">Save</button>
-        </div>
-    </form>
+  <form
+    class="editModal-content"
+    action="{% url 'edit_admin_project' %}"
+    method="POST"
+  >
+    {% csrf_token %}
+    <h4>Edit opening</h4>
+    <div class="pairField">
+      <label for="name">Job tittle</label>
+      <input
+        type="job-title"
+        placeholder="Enter job title"
+        class="editDetailJobTitle"
+        name="title"
+      />
+    </div>
+    <div class="pairField">
+      <label for="about">Description</label>
+      <textarea
+        rows="3"
+        placeholder="Enter job description"
+        name="description"
+        class="editJobDescription"
+      ></textarea>
+    </div>
+    <div class="pairField">
+      <label for="name">Requirement</label>
+      <textarea
+        rows="3"
+        placeholder="Enter job requirement"
+        name="requirements"
+        class="editJobRequirements"
+      ></textarea>
+    </div>
+    <input type="text" id="jobIdInput" name="jobApplicationId" hidden />
+    <div class="taskButtons">
+      <button class="cancel" id="closeEditModal" type="button">Cancel</button>
+      <button class="create" id="createModalButton">Save</button>
+    </div>
+  </form>
 </div>
 
 <div id="deleteModal" class="deleteModal">
-    <form class="deleteModal-content" action="{% url 'delete_admin_project' %}" method="POST">
-        {% csrf_token %}
-        <h6>Delete  opening</h6>
-        <p>Are you sure want to delete this job opening post ?</p>
-        <input type="text" id="deleteHiddenId" name="deleteId" hidden >
-        <div class="taskButtons">
-            <button class="cancel" id="cancelDelete" type="button">Cancel</button>
-            <button class="delete" id="confirmDelete">Delete</button>
-        </div>
-    </form>
+  <form
+    class="deleteModal-content"
+    action="{% url 'delete_admin_project' %}"
+    method="POST"
+  >
+    {% csrf_token %}
+    <h6>Delete opening</h6>
+    <p>Are you sure want to delete this job opening post ?</p>
+    <input type="text" id="deleteHiddenId" name="deleteId" hidden />
+    <div class="taskButtons">
+      <button class="cancel" id="cancelDelete" type="button">Cancel</button>
+      <button class="delete" id="confirmDelete">Delete</button>
+    </div>
+  </form>
 </div>
 
 <div id="logoutModal" class="logoutModal">
-    <form class="logoutModal-content" action="{% url 'logout_user' %}" method="POST">
-        {% csrf_token %}
-        <h4>Logout</h4>
-        <p>Are you sure want to logout ?</p>
-        <div class="createButtons">
-            <button class="logoutCancel" id="logoutcancel" type="button">cancel</button>
-            <button class="logoutConfirm" id="logoutsave">Logout</button>
-        </div>
-    </form>
+  <form
+    class="logoutModal-content"
+    action="{% url 'logout_user' %}"
+    method="POST"
+  >
+    {% csrf_token %}
+    <h4>Logout</h4>
+    <p>Are you sure want to logout ?</p>
+    <div class="createButtons">
+      <button class="logoutCancel" id="logoutcancel" type="button">
+        cancel
+      </button>
+      <button class="logoutConfirm" id="logoutsave">Logout</button>
+    </div>
+  </form>
 </div>
 
 <script>
-       const viewButtons = document.querySelectorAll(".view");
-    const detailModal = document.getElementById("detailModal");
-    const detailClose = document.getElementById("closeDetailModal");
+  const viewButtons = document.querySelectorAll(".view");
+  const detailModal = document.getElementById("detailModal");
+  const detailClose = document.getElementById("closeDetailModal");
 
-    const createButton = document.getElementById("createButton");
-    const createModal = document.getElementById("createModal");
-    const createClose = document.getElementById("closeCreateModal");
-    const closeEditModal = document.getElementById("closeEditModal");
+  const createButton = document.getElementById("createButton");
+  const createModal = document.getElementById("createModal");
+  const createClose = document.getElementById("closeCreateModal");
+  const closeEditModal = document.getElementById("closeEditModal");
 
-    const receivedNumber = document.querySelector(".receivedNumber")
-    const shortListedNumber = document.querySelector(".shortListedNumber")
-    const rejectedNumber = document.querySelector(".rejectedNumber")
+  const receivedNumber = document.querySelector(".receivedNumber");
+  const shortListedNumber = document.querySelector(".shortListedNumber");
+  const rejectedNumber = document.querySelector(".rejectedNumber");
 
-    const options = document.getElementById("options");
-    const dropDownList = document.getElementById("dropDownList");
-    const deleteButton = document.getElementById("deleteButton");
-    const editDetailsButton = document.getElementById("editDetailButton")
-    const editModal = document.getElementById("editModal")
-    const deleteModal = document.getElementById("deleteModal");
+  const options = document.getElementById("options");
+  const dropDownList = document.getElementById("dropDownList");
+  const deleteButton = document.getElementById("deleteButton");
+  const editDetailsButton = document.getElementById("editDetailButton");
+  const editModal = document.getElementById("editModal");
+  const deleteModal = document.getElementById("deleteModal");
 
-    const jobTitle = detailModal.querySelector(".jobTitle")
-    const jobDescription = detailModal.querySelector(".jobDescription")
-    const detailModalRequirements = detailModal.querySelectorAll(".pairField li");
+  const jobTitle = detailModal.querySelector(".jobTitle");
+  const jobDescription = detailModal.querySelector(".jobDescription");
+  const detailModalRequirements = detailModal.querySelectorAll(".pairField li");
 
-    const detailJobTitle = detailModal.querySelector(".detailJobTitle")
-    const cancelDelete = document.getElementById("cancelDelete")
+  const detailJobTitle = detailModal.querySelector(".detailJobTitle");
+  const cancelDelete = document.getElementById("cancelDelete");
 
-    
-    viewButtons.forEach((button) => {
-        button.addEventListener("click", (event) => {
-    
-        const jobId = button.dataset.id;
+  viewButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const jobId = button.dataset.id;
 
-        const jobIdInput = editModal.querySelector("#jobIdInput");
-        jobIdInput.value = jobId;
+      const jobIdInput = editModal.querySelector("#jobIdInput");
+      jobIdInput.value = jobId;
 
-        const deleteHiddenId = deleteModal.querySelector("#deleteHiddenId")
-        deleteHiddenId.value = jobId
-        
-            const xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    const jobDetails = JSON.parse(xhr.responseText);
+      const deleteHiddenId = deleteModal.querySelector("#deleteHiddenId");
+      deleteHiddenId.value = jobId;
 
-                    jobTitle.innerText = jobDetails.title;
-                    jobDescription.innerText = jobDetails.description;
-                    receivedNumber.innerText = jobDetails.received_number;
-                    shortListedNumber.innerText = jobDetails.shortlisted_number
-                    rejectedNumber.innerText = jobDetails.rejected_number
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          const jobDetails = JSON.parse(xhr.responseText);
 
-                    // // Clear existing requirements
-                    detailModalRequirements?.forEach((li) => {
-                        li?.parentNode?.removeChild(li);
-                    });
+          jobTitle.innerText = jobDetails.title;
+          jobDescription.innerText = jobDetails.description;
+          receivedNumber.innerText = jobDetails.received_number;
+          shortListedNumber.innerText = jobDetails.shortlisted_number;
+          rejectedNumber.innerText = jobDetails.rejected_number;
 
-                    // Add new requirements
-                    jobDetails.requirements.forEach((requirement) => {
-                        const li = document.createElement("li");
-                        li.textContent = requirement;
-                        detailModal.querySelector(".pairField ul").appendChild(li);
-                    });
+          // // Clear existing requirements
+          detailModalRequirements?.forEach((li) => {
+            li?.parentNode?.removeChild(li);
+          });
 
-                    // Display the detailModal
-                    detailModal.style.display = "block";
-                }
-            };
+          // Add new requirements
+          jobDetails.requirements.forEach((requirement) => {
+            const li = document.createElement("li");
+            li.textContent = requirement;
+            detailModal.querySelector(".pairField ul").appendChild(li);
+          });
 
-            // Make AJAX request to fetch job details
-            xhr.open("GET", `/get-job-details/?id=${jobId}`, true);
-            xhr.send();
-        });
+          // Display the detailModal
+          detailModal.style.display = "block";
+        }
+      };
+
+      // Make AJAX request to fetch job details
+      xhr.open("GET", `/get-job-details/?id=${jobId}`, true);
+      xhr.send();
     });
-    
-    detailClose.onclick = () => {
-        detailModal.style.display = "none";
-    };
+  });
 
-    options.onclick = () => {
-        dropDownList.style.display = "flex";
-    }
-    editDetailsButton.onclick = () => {
-        dropDownList.style.display = "none";
-        detailModal.style.display = "none";
-        editModal.style.display = 'block'
-    }
+  detailClose.onclick = () => {
+    detailModal.style.display = "none";
+  };
 
-    closeEditModal.onclick = () => {
-        editModal.style.display = 'none'
-    }
+  options.onclick = () => {
+    dropDownList.style.display = "flex";
+  };
+  editDetailsButton.onclick = () => {
+    dropDownList.style.display = "none";
+    detailModal.style.display = "none";
+    editModal.style.display = "block";
+  };
 
+  closeEditModal.onclick = () => {
+    editModal.style.display = "none";
+  };
 
-    deleteButton.onclick = () => {
-        dropDownList.style.display = "none";
-        detailModal.style.display = "none";
-        deleteModal.style.display = "block";
-    };
+  deleteButton.onclick = () => {
+    dropDownList.style.display = "none";
+    detailModal.style.display = "none";
+    deleteModal.style.display = "block";
+  };
 
-    cancelDelete.onclick = () => {
-        deleteModal.style.display = "none";
-    }
+  cancelDelete.onclick = () => {
+    deleteModal.style.display = "none";
+  };
 
-    const logoutModal = document.getElementById("logoutModal");
-    const logoutButton = document.getElementById("logoutButton");
-    const logoutSave = document.getElementById("logoutsave");
-    const logoutCancel = document.getElementById("logoutcancel");
+  const logoutModal = document.getElementById("logoutModal");
+  const logoutButton = document.getElementById("logoutButton");
+  const logoutSave = document.getElementById("logoutsave");
+  const logoutCancel = document.getElementById("logoutcancel");
 
-    logoutButton.onclick = () => {
-        logoutModal.style.display = "block";
-    }
+  logoutButton.onclick = () => {
+    logoutModal.style.display = "block";
+  };
 
-    logoutCancel.onclick = () => {
-        logoutModal.style.display = "none";
-    };
+  logoutCancel.onclick = () => {
+    logoutModal.style.display = "none";
+  };
 
-    logoutSave.onclick = () => {
-        logoutModal.style.display = "none";
-        window.location.href = "/";
-    };
+  logoutSave.onclick = () => {
+    logoutModal.style.display = "none";
+    window.location.href = "/";
+  };
 
-    const view = document.querySelectorAll(".view");
+  const view = document.querySelectorAll(".view");
 
-    document.addEventListener("DOMContentLoaded", function() {
-        var jobCardsContainer = document.getElementById('jobCardsContainer');
-        var rows = jobCardsContainer.querySelectorAll('.jobCard');
-        var rowsPerPage = 12;
-        var currentPage = 0;
-        function showPage(page) {
-            var start = page * rowsPerPage;
-            var end = start + rowsPerPage;
-            for (var i = 0; i < rows.length; i++) {
-                if (i >= start && i < end) {
-                    rows[i].style.display = '';
-                } else {
-                    rows[i].style.display = 'none';
-                }
-            }
+  document.addEventListener("DOMContentLoaded", function () {
+    var jobCardsContainer = document.getElementById("jobCardsContainer");
+    var rows = jobCardsContainer.querySelectorAll(".jobCard");
+    var rowsPerPage = 12;
+    var currentPage = 0;
+    function showPage(page) {
+      var start = page * rowsPerPage;
+      var end = start + rowsPerPage;
+      for (var i = 0; i < rows.length; i++) {
+        if (i >= start && i < end) {
+          rows[i].style.display = "";
+        } else {
+          rows[i].style.display = "none";
         }
-        function createPagination() {
-            var pageCount = Math.ceil(rows.length / rowsPerPage);
-            var pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
-            for (var i = 0; i < pageCount; i++) {
-                var button = document.createElement('button');
-                button.innerText = i + 1;
-                button.addEventListener('click', function() {
-                    currentPage = parseInt(this.innerText) - 1;
-                    showPage(currentPage);
-                });
-                pagination.appendChild(button);
-            }
-        }
-        function updatePagination() {
-            var buttons = document.querySelectorAll('.pagination button');
-            buttons.forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            buttons[currentPage].classList.add('active');
-        }
-        createPagination();
+      }
+    }
+    function createPagination() {
+      var pageCount = Math.ceil(rows.length / rowsPerPage);
+      var pagination = document.getElementById("pagination");
+      pagination.innerHTML = "";
+      for (var i = 0; i < pageCount; i++) {
+        var button = document.createElement("button");
+        button.innerText = i + 1;
+        button.addEventListener("click", function () {
+          currentPage = parseInt(this.innerText) - 1;
+          showPage(currentPage);
+        });
+        pagination.appendChild(button);
+      }
+    }
+    function updatePagination() {
+      var buttons = document.querySelectorAll(".pagination button");
+      buttons.forEach(function (btn) {
+        btn.classList.remove("active");
+      });
+      buttons[currentPage].classList.add("active");
+    }
+    createPagination();
+    showPage(currentPage);
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    prevBtn.addEventListener("click", function () {
+      if (currentPage > 0) {
+        currentPage--;
         showPage(currentPage);
-        var prevBtn = document.getElementById('prevBtn');
-        var nextBtn = document.getElementById('nextBtn');
-        prevBtn.addEventListener('click', function() {
-            if (currentPage > 0) {
-                currentPage--;
-                showPage(currentPage);
-                updatePagination();
-            }
-        });
-        nextBtn.addEventListener('click', function() {
-            if (currentPage < Math.ceil(rows.length / rowsPerPage) - 1) {
-                currentPage++;
-                showPage(currentPage);
-                updatePagination();
-            }
-        });
+        updatePagination();
+      }
     });
+    nextBtn.addEventListener("click", function () {
+      if (currentPage < Math.ceil(rows.length / rowsPerPage) - 1) {
+        currentPage++;
+        showPage(currentPage);
+        updatePagination();
+      }
+    });
+  });
 
-    document.addEventListener('click', function(event) {
+  document.addEventListener("click", function (event) {
     var isClickInsideOptions = options.contains(event.target);
     var isClickInsideDropDown = dropDownList.contains(event.target);
-    
+
     if (!isClickInsideOptions && !isClickInsideDropDown) {
-        dropDownList.style.display = "none";
+      dropDownList.style.display = "none";
     }
-    });
-
-
-
+  });
 </script>
 {% endblock %}

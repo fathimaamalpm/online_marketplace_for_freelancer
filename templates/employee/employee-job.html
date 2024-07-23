@@ -1,4 +1,11 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
+<style>
+    .detail-content{
+        max-height:550px;
+        overflow-y:scroll
+    }
+
+</style>
 <section id="employeeJob">
     <div class="left">
         <div class="leftLogo">
@@ -154,29 +161,31 @@
         <div class="closeIcon" id="meetingModalClose">
             <img src="{% static '/images/close-icon.svg' %}" alt="close icon" />
         </div>
-        <div class="detailModalTitle employeeDetailModalTitle">
-            <h4>Details</h4>
-        </div>
-        <div class="pairField">
-            <label for="job-title">Job tittle</label>
-            <p class="jobTitle"></p>
-        </div>
-        <div class="pairField">
-            <label for="description">Description</label>
-            <p class="jobDescription">
-            </p>
-        </div>
-        <div class="pairField">
-            <label for="name">Requirement</label>
-            <ul class="list">
-                <li>
-                </li>
-            </ul>
-        </div>
-        <div class="taskButtons viewEmployeeDetailsButtons">
-            <button class="close" id="closeDetailModal" type="button">Close</button>
-            <button class="apply" id="applyDetailModal" data-id="">Apply now</button>
-            <button class="alreadyAppliedButton" id="alreadyApplied" data-id="" type="button">Already applied</button>
+        <div class="detail-content">
+            <div class="detailModalTitle employeeDetailModalTitle">
+                <h4>Details</h4>
+            </div>
+            <div class="pairField">
+                <label for="job-title">Job tittle</label>
+                <p class="jobTitle"></p>
+            </div>
+            <div class="pairField">
+                <label for="description">Description</label>
+                <p class="jobDescription">
+                </p>
+            </div>
+            <div class="pairField">
+                <label for="name">Requirement</label>
+                <ul class="list">
+                    <li>
+                    </li>
+                </ul>
+            </div>
+            <div class="taskButtons viewEmployeeDetailsButtons">
+                <button class="close" id="closeDetailModal" type="button">Close</button>
+                <button class="apply" id="applyDetailModal" data-id="">Apply now</button>
+                <button class="alreadyAppliedButton" id="alreadyApplied" data-id="" type="button">Already applied</button>
+            </div>
         </div>
     </form>
 </div>
@@ -283,7 +292,7 @@
         });
         });
     meetingModalClose.onclick = () => {
-            createMeetingModal.style.display = "none" ;
+        detailModal.style.display = "none" ;
         };    
 
     detailClose.onclick = () => {
